@@ -4293,7 +4293,7 @@ const appRouter = (0, _reactRouterDom.createBrowserRouter)([
                 }, undefined)
             },
             {
-                path: "/restaurants/",
+                path: "/restaurants/:resId",
                 element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _restaurantMenuDefault.default), {}, void 0, false, {
                     fileName: "src/App.js",
                     lineNumber: 1396,
@@ -28720,8 +28720,10 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "CDN_URL", ()=>CDN_URL);
 parcelHelpers.export(exports, "LOGO_URL", ()=>LOGO_URL);
+parcelHelpers.export(exports, "MENU_API", ()=>MENU_API);
 const CDN_URL = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 const LOGO_URL = "https://img.freepik.com/free-vector/flat-design-antojitos-logo-design-template_23-2149599172.jpg";
+const MENU_API = "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.7030425&lng=77.430373&restaurantId=686202&catalog_qa=undefined&isMenuUx4=true&submitAction=";
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
@@ -36557,1215 +36559,55 @@ var prevRefreshSig = window.$RefreshSig$;
 $parcel$ReactRefreshHelpers$0606.prelude(module);
 
 try {
-//import resList from "../utils/mockData";
+// import  reslist  from "../utils/mockdata";
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _restaurantCard = require("./RestaurantCard");
-var _restaurantCardDefault = parcelHelpers.interopDefault(_restaurantCard);
 var _react = require("react");
-var _mockData = require("../utils/mockData");
-var _mockDataDefault = parcelHelpers.interopDefault(_mockData);
-var _shimmer = require("./Shimmer");
+var _shimmer = require("./shimmer");
 var _shimmerDefault = parcelHelpers.interopDefault(_shimmer);
+var _reactRouterDom = require("react-router-dom");
 var _useOnlineStatus = require("../utils/useOnlineStatus");
 var _useOnlineStatusDefault = parcelHelpers.interopDefault(_useOnlineStatus);
 var _userContext = require("../utils/UserContext");
 var _userContextDefault = parcelHelpers.interopDefault(_userContext);
+var _restaurantCard = require("./RestaurantCard");
+var _restaurantCardDefault = parcelHelpers.interopDefault(_restaurantCard);
 var _s = $RefreshSig$();
-// const resList=[
-//     {
-//       "info": {
-//         "id": "107452",
-//         "name": "Chaayos Chai+Snacks=Relax",
-//         "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2024/4/9/1dbdf671-cbed-4fc1-8b43-faa0165112e9_107452.JPG",
-//         "locality": "Kashmiri Gate",
-//         "areaName": "Kashmiri Gate",
-//         "costForTwo": "₹250 for two",
-//         "cuisines": [
-//           "Bakery",
-//           "Beverages",
-//           "Chaat",
-//           "Desserts",
-//           "Home Food",
-//           "Italian",
-//           "Maharashtrian",
-//           "Snacks",
-//           "Street Food",
-//           "Sweets"
-//         ],
-//         "avgRating": 4.5,
-//         "veg": true,
-//         "parentId": "281782",
-//         "avgRatingString": "4.5",
-//         "totalRatingsString": "1K+",
-//         "sla": {
-//           "deliveryTime": 39,
-//           "lastMileTravel": 2.9,
-//           "serviceability": "SERVICEABLE",
-//           "slaString": "35-40 mins",
-//           "lastMileTravelString": "2.9 km",
-//           "iconType": "ICON_TYPE_EMPTY"
-//         },
-//         "availability": {
-//           "nextCloseTime": "2024-04-17 23:00:00",
-//           "opened": true
-//         },
-//         "badges": {
-//           "imageBadges": [
-//             {
-//               "imageId": "Rxawards/_CATEGORY-Cafe%20&%20Chai.png",
-//               "description": "Delivery!"
-//             },
-//             {
-//               "imageId": "v1695133679/badges/Pure_Veg111.png",
-//               "description": "pureveg"
-//             }
-//           ],
-//           "textExtendedBadges": [
-//             {
-//               "iconId": "guiltfree/GF_Logo_android_3x",
-//               "shortDescription": "options available",
-//               "fontColor": "#7E808C"
-//             }
-//           ]
-//         },
-//         "isOpen": true,
-//         "type": "F",
-//         "badgesV2": {
-//           "entityBadges": {
-//             "imageBased": {
-//               "badgeObject": [
-//                 {
-//                   "attributes": {
-//                     "description": "Delivery!",
-//                     "imageId": "Rxawards/_CATEGORY-Cafe%20&%20Chai.png"
-//                   }
-//                 },
-//                 {
-//                   "attributes": {
-//                     "description": "pureveg",
-//                     "imageId": "v1695133679/badges/Pure_Veg111.png"
-//                   }
-//                 }
-//               ]
-//             },
-//             "textBased": {
-//             },
-//             "textExtendedBadges": {
-//               "badgeObject": [
-//                 {
-//                   "attributes": {
-//                     "description": "",
-//                     "fontColor": "#7E808C",
-//                     "iconId": "guiltfree/GF_Logo_android_3x",
-//                     "shortDescription": "options available"
-//                   }
-//                 }
-//               ]
-//             }
-//           }
-//         },
-//         "aggregatedDiscountInfoV3": {
-//           "header": "50% OFF",
-//           "subHeader": "UPTO ₹90"
-//         },
-//         "differentiatedUi": {
-//           "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-//           "differentiatedUiMediaDetails": {
-//             "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-//             "lottie": {
-//             },
-//             "video": {
-//             }
-//           }
-//         },
-//         "reviewsSummary": {
-//         },
-//         "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-//         "restaurantOfferPresentationInfo": {
-//         }
-//       },
-//       "analytics": {
-//       },
-//       "cta": {
-//         "link": "https://www.swiggy.com/restaurants/chaayos-chai-snacks-relax-kashmiri-gate-delhi-107452",
-//         "type": "WEBLINK"
-//       }
-//     },
-//     {
-//       "info": {
-//         "id": "76225",
-//         "name": "Subway",
-//         "cloudinaryImageId": "63178e3e64d503a479f2a2048a474552",
-//         "locality": "Malka Ganj Road",
-//         "areaName": "Kamla Nagar",
-//         "costForTwo": "₹350 for two",
-//         "cuisines": [
-//           "Salads",
-//           "Snacks",
-//           "Desserts",
-//           "Beverages"
-//         ],
-//         "avgRating": 4.1,
-//         "parentId": "2",
-//         "avgRatingString": "4.1",
-//         "totalRatingsString": "5K+",
-//         "sla": {
-//           "deliveryTime": 38,
-//           "lastMileTravel": 5,
-//           "serviceability": "SERVICEABLE",
-//           "slaString": "35-40 mins",
-//           "lastMileTravelString": "5.0 km",
-//           "iconType": "ICON_TYPE_EMPTY"
-//         },
-//         "availability": {
-//           "nextCloseTime": "2024-04-17 23:59:00",
-//           "opened": true
-//         },
-//         "badges": {
-//           "textExtendedBadges": [
-//             {
-//               "iconId": "guiltfree/GF_Logo_android_3x",
-//               "shortDescription": "options available",
-//               "fontColor": "#7E808C"
-//             }
-//           ]
-//         },
-//         "isOpen": true,
-//         "type": "F",
-//         "badgesV2": {
-//           "entityBadges": {
-//             "imageBased": {
-//             },
-//             "textBased": {
-//             },
-//             "textExtendedBadges": {
-//               "badgeObject": [
-//                 {
-//                   "attributes": {
-//                     "description": "",
-//                     "fontColor": "#7E808C",
-//                     "iconId": "guiltfree/GF_Logo_android_3x",
-//                     "shortDescription": "options available"
-//                   }
-//                 }
-//               ]
-//             }
-//           }
-//         },
-//         "aggregatedDiscountInfoV3": {
-//           "header": "40% OFF",
-//           "subHeader": "UPTO ₹80"
-//         },
-//         "differentiatedUi": {
-//           "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-//           "differentiatedUiMediaDetails": {
-//             "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-//             "lottie": {
-//             },
-//             "video": {
-//             }
-//           }
-//         },
-//         "reviewsSummary": {
-//         },
-//         "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-//         "restaurantOfferPresentationInfo": {
-//         }
-//       },
-//       "analytics": {
-//       },
-//       "cta": {
-//         "link": "https://www.swiggy.com/restaurants/subway-malka-ganj-road-kamla-nagar-delhi-76225",
-//         "type": "WEBLINK"
-//       }
-//     },
-//     {
-//       "info": {
-//         "id": "253727",
-//         "name": "McDonald's",
-//         "cloudinaryImageId": "535fc9f9c135f7982317bbb6a64a1ffc",
-//         "locality": "Kashmere Gate Metro Station",
-//         "areaName": "Kashmiri Gate",
-//         "costForTwo": "₹400 for two",
-//         "cuisines": [
-//           "American"
-//         ],
-//         "avgRating": 4.2,
-//         "parentId": "630",
-//         "avgRatingString": "4.2",
-//         "totalRatingsString": "1K+",
-//         "sla": {
-//           "deliveryTime": 38,
-//           "lastMileTravel": 2.9,
-//           "serviceability": "SERVICEABLE",
-//           "slaString": "35-40 mins",
-//           "lastMileTravelString": "2.9 km",
-//           "iconType": "ICON_TYPE_EMPTY"
-//         },
-//         "availability": {
-//           "nextCloseTime": "2024-04-17 22:45:00",
-//           "opened": true
-//         },
-//         "badges": {
-//           "imageBadges": [
-//             {
-//               "imageId": "Rxawards/_CATEGORY-Burger.png",
-//               "description": "Delivery!"
-//             }
-//           ]
-//         },
-//         "isOpen": true,
-//         "type": "F",
-//         "badgesV2": {
-//           "entityBadges": {
-//             "imageBased": {
-//               "badgeObject": [
-//                 {
-//                   "attributes": {
-//                     "description": "Delivery!",
-//                     "imageId": "Rxawards/_CATEGORY-Burger.png"
-//                   }
-//                 }
-//               ]
-//             },
-//             "textBased": {
-//             },
-//             "textExtendedBadges": {
-//             }
-//           }
-//         },
-//         "aggregatedDiscountInfoV3": {
-//           "header": "30% OFF",
-//           "subHeader": "UPTO ₹75"
-//         },
-//         "differentiatedUi": {
-//           "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-//           "differentiatedUiMediaDetails": {
-//             "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-//             "lottie": {
-//             },
-//             "video": {
-//             }
-//           }
-//         },
-//         "reviewsSummary": {
-//         },
-//         "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-//         "restaurantOfferPresentationInfo": {
-//         }
-//       },
-//       "analytics": {
-//       },
-//       "cta": {
-//         "link": "https://www.swiggy.com/restaurants/mcdonalds-kashmere-gate-metro-station-kashmiri-gate-delhi-253727",
-//         "type": "WEBLINK"
-//       }
-//     },
-//     {
-//       "info": {
-//         "id": "611107",
-//         "name": "Burger King",
-//         "cloudinaryImageId": "e33e1d3ba7d6b2bb0d45e1001b731fcf",
-//         "locality": "Kashmere Gate Metro Station",
-//         "areaName": "Kashmere Gate",
-//         "costForTwo": "₹350 for two",
-//         "cuisines": [
-//           "American"
-//         ],
-//         "avgRating": 4.1,
-//         "parentId": "166",
-//         "avgRatingString": "4.1",
-//         "totalRatingsString": "500+",
-//         "sla": {
-//           "deliveryTime": 50,
-//           "lastMileTravel": 3.6,
-//           "serviceability": "SERVICEABLE",
-//           "slaString": "45-50 mins",
-//           "lastMileTravelString": "3.6 km",
-//           "iconType": "ICON_TYPE_EMPTY"
-//         },
-//         "availability": {
-//           "nextCloseTime": "2024-04-18 02:00:00",
-//           "opened": true
-//         },
-//         "badges": {
-//           "imageBadges": [
-//             {
-//               "imageId": "Rxawards/_CATEGORY-Burger.png",
-//               "description": "Delivery!"
-//             }
-//           ]
-//         },
-//         "isOpen": true,
-//         "type": "F",
-//         "badgesV2": {
-//           "entityBadges": {
-//             "imageBased": {
-//               "badgeObject": [
-//                 {
-//                   "attributes": {
-//                     "description": "Delivery!",
-//                     "imageId": "Rxawards/_CATEGORY-Burger.png"
-//                   }
-//                 }
-//               ]
-//             },
-//             "textBased": {
-//             },
-//             "textExtendedBadges": {
-//             }
-//           }
-//         },
-//         "aggregatedDiscountInfoV3": {
-//           "header": "ITEMS",
-//           "subHeader": "AT ₹139"
-//         },
-//         "differentiatedUi": {
-//           "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-//           "differentiatedUiMediaDetails": {
-//             "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-//             "lottie": {
-//             },
-//             "video": {
-//             }
-//           }
-//         },
-//         "reviewsSummary": {
-//         },
-//         "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-//         "restaurantOfferPresentationInfo": {
-//         }
-//       },
-//       "analytics": {
-//       },
-//       "cta": {
-//         "link": "https://www.swiggy.com/restaurants/burger-king-metro-station-kashmere-gate-delhi-611107",
-//         "type": "WEBLINK"
-//       }
-//     },
-//     {
-//       "info": {
-//         "id": "263663",
-//         "name": "Upwas Specials by Lunchbox",
-//         "cloudinaryImageId": "y2oysbch5umyyagezvwj",
-//         "locality": "Gandhi Market",
-//         "areaName": "Barakhamba",
-//         "costForTwo": "₹200 for two",
-//         "cuisines": [
-//           "Biryani",
-//           "North Indian",
-//           "Desserts",
-//           "Beverages"
-//         ],
-//         "avgRating": 4.3,
-//         "veg": true,
-//         "parentId": "21938",
-//         "avgRatingString": "4.3",
-//         "totalRatingsString": "100+",
-//         "sla": {
-//           "deliveryTime": 34,
-//           "lastMileTravel": 3.6,
-//           "serviceability": "SERVICEABLE",
-//           "slaString": "30-35 mins",
-//           "lastMileTravelString": "3.6 km",
-//           "iconType": "ICON_TYPE_EMPTY"
-//         },
-//         "availability": {
-//           "nextCloseTime": "2024-04-17 23:59:00",
-//           "opened": true
-//         },
-//         "badges": {
-//           "imageBadges": [
-//             {
-//               "imageId": "v1695133679/badges/Pure_Veg111.png",
-//               "description": "pureveg"
-//             }
-//           ]
-//         },
-//         "isOpen": true,
-//         "type": "F",
-//         "badgesV2": {
-//           "entityBadges": {
-//             "imageBased": {
-//               "badgeObject": [
-//                 {
-//                   "attributes": {
-//                     "description": "pureveg",
-//                     "imageId": "v1695133679/badges/Pure_Veg111.png"
-//                   }
-//                 }
-//               ]
-//             },
-//             "textBased": {
-//             },
-//             "textExtendedBadges": {
-//             }
-//           }
-//         },
-//         "aggregatedDiscountInfoV3": {
-//           "header": "50% OFF",
-//           "subHeader": "UPTO ₹100"
-//         },
-//         "differentiatedUi": {
-//           "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-//           "differentiatedUiMediaDetails": {
-//             "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-//             "lottie": {
-//             },
-//             "video": {
-//             }
-//           }
-//         },
-//         "reviewsSummary": {
-//         },
-//         "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-//         "restaurantOfferPresentationInfo": {
-//         }
-//       },
-//       "analytics": {
-//       },
-//       "cta": {
-//         "link": "https://www.swiggy.com/restaurants/upwas-specials-by-lunchbox-gandhi-market-barakhamba-delhi-263663",
-//         "type": "WEBLINK"
-//       }
-//     },
-//     {
-//       "info": {
-//         "id": "60643",
-//         "name": "Hira Sweets",
-//         "cloudinaryImageId": "ttl0azfrovxbrheica7z",
-//         "locality": "Connaught Place",
-//         "areaName": "Connaught Place",
-//         "costForTwo": "₹600 for two",
-//         "cuisines": [
-//           "North Indian",
-//           "South Indian",
-//           "Chinese",
-//           "Continental",
-//           "Bakery",
-//           "Street Food",
-//           "Sweets",
-//           "Desserts",
-//           "Beverages"
-//         ],
-//         "avgRating": 4.4,
-//         "parentId": "5155",
-//         "avgRatingString": "4.4",
-//         "totalRatingsString": "5K+",
-//         "sla": {
-//           "deliveryTime": 32,
-//           "lastMileTravel": 4.5,
-//           "serviceability": "SERVICEABLE",
-//           "slaString": "30-35 mins",
-//           "lastMileTravelString": "4.5 km",
-//           "iconType": "ICON_TYPE_EMPTY"
-//         },
-//         "availability": {
-//           "nextCloseTime": "2024-04-17 23:59:00",
-//           "opened": true
-//         },
-//         "badges": {
-//           "imageBadges": [
-//             {
-//               "imageId": "Rxawards/_CATEGORY-Mithai.png",
-//               "description": "Delivery!"
-//             }
-//           ]
-//         },
-//         "isOpen": true,
-//         "aggregatedDiscountInfoV2": {
-//         },
-//         "type": "F",
-//         "badgesV2": {
-//           "entityBadges": {
-//             "imageBased": {
-//               "badgeObject": [
-//                 {
-//                   "attributes": {
-//                     "description": "Delivery!",
-//                     "imageId": "Rxawards/_CATEGORY-Mithai.png"
-//                   }
-//                 }
-//               ]
-//             },
-//             "textBased": {
-//             },
-//             "textExtendedBadges": {
-//             }
-//           }
-//         },
-//         "differentiatedUi": {
-//           "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-//           "differentiatedUiMediaDetails": {
-//             "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-//             "lottie": {
-//             },
-//             "video": {
-//             }
-//           }
-//         },
-//         "reviewsSummary": {
-//         },
-//         "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-//         "restaurantOfferPresentationInfo": {
-//         }
-//       },
-//       "analytics": {
-//       },
-//       "cta": {
-//         "link": "https://www.swiggy.com/restaurants/hira-sweets-connaught-place-delhi-60643",
-//         "type": "WEBLINK"
-//       }
-//     },
-//     {
-//       "info": {
-//         "id": "378311",
-//         "name": "Blue Tokai Coffee Roasters",
-//         "cloudinaryImageId": "1a0521375f07155eda2f1ed263206831",
-//         "locality": "Chanakyapuri",
-//         "areaName": "Connaught Place",
-//         "costForTwo": "₹600 for two",
-//         "cuisines": [
-//           "Cafe",
-//           "Coffee",
-//           "Beverages"
-//         ],
-//         "avgRating": 4.4,
-//         "parentId": "2682",
-//         "avgRatingString": "4.4",
-//         "totalRatingsString": "500+",
-//         "sla": {
-//           "deliveryTime": 27,
-//           "lastMileTravel": 4.3,
-//           "serviceability": "SERVICEABLE",
-//           "slaString": "25-30 mins",
-//           "lastMileTravelString": "4.3 km",
-//           "iconType": "ICON_TYPE_EMPTY"
-//         },
-//         "availability": {
-//           "nextCloseTime": "2024-04-17 23:00:00",
-//           "opened": true
-//         },
-//         "badges": {
-//           "imageBadges": [
-//             {
-//               "imageId": "newg.png",
-//               "description": "Gourmet"
-//             }
-//           ]
-//         },
-//         "isOpen": true,
-//         "type": "F",
-//         "badgesV2": {
-//           "entityBadges": {
-//             "imageBased": {
-//               "badgeObject": [
-//                 {
-//                   "attributes": {
-//                     "description": "Gourmet",
-//                     "imageId": "newg.png"
-//                   }
-//                 }
-//               ]
-//             },
-//             "textBased": {
-//             },
-//             "textExtendedBadges": {
-//             }
-//           }
-//         },
-//         "aggregatedDiscountInfoV3": {
-//           "header": "₹75 OFF",
-//           "subHeader": "ABOVE ₹249",
-//           "discountTag": "FLAT DEAL"
-//         },
-//         "differentiatedUi": {
-//           "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-//           "differentiatedUiMediaDetails": {
-//             "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-//             "lottie": {
-//             },
-//             "video": {
-//             }
-//           }
-//         },
-//         "reviewsSummary": {
-//         },
-//         "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-//         "restaurantOfferPresentationInfo": {
-//         }
-//       },
-//       "analytics": {
-//       },
-//       "cta": {
-//         "link": "https://www.swiggy.com/restaurants/blue-tokai-coffee-roasters-chanakyapuri-connaught-place-delhi-378311",
-//         "type": "WEBLINK"
-//       }
-//     },
-//     {
-//       "info": {
-//         "id": "18579",
-//         "name": "Bille Di Hatti ",
-//         "cloudinaryImageId": "agg7imcn7bs2bng028zn",
-//         "locality": "Kamla Nagar",
-//         "areaName": "Kamla Nagar",
-//         "costForTwo": "₹100 for two",
-//         "cuisines": [
-//           "Street Food",
-//           "Snacks",
-//           "North Indian"
-//         ],
-//         "avgRating": 4.2,
-//         "parentId": "4639",
-//         "avgRatingString": "4.2",
-//         "totalRatingsString": "10K+",
-//         "sla": {
-//           "deliveryTime": 28,
-//           "lastMileTravel": 5.6,
-//           "serviceability": "SERVICEABLE",
-//           "slaString": "25-30 mins",
-//           "lastMileTravelString": "5.6 km",
-//           "iconType": "ICON_TYPE_EMPTY"
-//         },
-//         "availability": {
-//           "nextCloseTime": "2024-04-17 19:30:00",
-//           "opened": true
-//         },
-//         "badges": {
-//         },
-//         "isOpen": true,
-//         "type": "F",
-//         "badgesV2": {
-//           "entityBadges": {
-//             "imageBased": {
-//             },
-//             "textBased": {
-//             },
-//             "textExtendedBadges": {
-//             }
-//           }
-//         },
-//         "aggregatedDiscountInfoV3": {
-//           "header": "₹125 OFF",
-//           "subHeader": "ABOVE ₹199",
-//           "discountTag": "FLAT DEAL"
-//         },
-//         "differentiatedUi": {
-//           "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-//           "differentiatedUiMediaDetails": {
-//             "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-//             "lottie": {
-//             },
-//             "video": {
-//             }
-//           }
-//         },
-//         "reviewsSummary": {
-//         },
-//         "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-//         "restaurantOfferPresentationInfo": {
-//         }
-//       },
-//       "analytics": {
-//       },
-//       "cta": {
-//         "link": "https://www.swiggy.com/restaurants/bille-di-hatti-kamla-nagar-delhi-18579",
-//         "type": "WEBLINK"
-//       }
-//     },
-//     {
-//       "info": {
-//         "id": "279866",
-//         "name": "Ghar ka Khana by EatFit",
-//         "cloudinaryImageId": "1d578bb732e03c6f591790eb7d2d88e2",
-//         "locality": "Laxmi Narain Street",
-//         "areaName": "Paharganj",
-//         "costForTwo": "₹250 for two",
-//         "cuisines": [
-//           "North Indian",
-//           "Home Food",
-//           "Healthy Food",
-//           "Indian",
-//           "Punjabi",
-//           "South Indian",
-//           "Rajasthani",
-//           "Maharashtrian",
-//           "Snacks",
-//           "Desserts",
-//           "Beverages"
-//         ],
-//         "avgRating": 4.2,
-//         "parentId": "422576",
-//         "avgRatingString": "4.2",
-//         "totalRatingsString": "1K+",
-//         "sla": {
-//           "deliveryTime": 33,
-//           "lastMileTravel": 4.4,
-//           "serviceability": "SERVICEABLE",
-//           "slaString": "30-35 mins",
-//           "lastMileTravelString": "4.4 km",
-//           "iconType": "ICON_TYPE_EMPTY"
-//         },
-//         "availability": {
-//           "nextCloseTime": "2024-04-17 23:45:00",
-//           "opened": true
-//         },
-//         "badges": {
-//           "textExtendedBadges": [
-//             {
-//               "iconId": "guiltfree/GF_Logo_android_3x",
-//               "shortDescription": "options available",
-//               "fontColor": "#7E808C"
-//             }
-//           ]
-//         },
-//         "isOpen": true,
-//         "type": "F",
-//         "badgesV2": {
-//           "entityBadges": {
-//             "imageBased": {
-//             },
-//             "textBased": {
-//             },
-//             "textExtendedBadges": {
-//               "badgeObject": [
-//                 {
-//                   "attributes": {
-//                     "description": "",
-//                     "fontColor": "#7E808C",
-//                     "iconId": "guiltfree/GF_Logo_android_3x",
-//                     "shortDescription": "options available"
-//                   }
-//                 }
-//               ]
-//             }
-//           }
-//         },
-//         "aggregatedDiscountInfoV3": {
-//           "header": "50% OFF",
-//           "subHeader": "UPTO ₹100"
-//         },
-//         "differentiatedUi": {
-//           "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-//           "differentiatedUiMediaDetails": {
-//             "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-//             "lottie": {
-//             },
-//             "video": {
-//             }
-//           }
-//         },
-//         "reviewsSummary": {
-//         },
-//         "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-//         "restaurantOfferPresentationInfo": {
-//         }
-//       },
-//       "analytics": {
-//       },
-//       "cta": {
-//         "link": "https://www.swiggy.com/restaurants/ghar-ka-khana-by-eatfit-laxmi-narain-street-paharganj-delhi-279866",
-//         "type": "WEBLINK"
-//       }
-//     },
-//     {
-//       "info": {
-//         "id": "258198",
-//         "name": "Great Indian Khichdi by EatFit",
-//         "cloudinaryImageId": "6e44fd7f1e5cd9967edfe47c10247671",
-//         "locality": "Chuna Mandi",
-//         "areaName": "Paharganj",
-//         "costForTwo": "₹200 for two",
-//         "cuisines": [
-//           "Home Food",
-//           "Indian",
-//           "North Indian",
-//           "Healthy Food",
-//           "Snacks",
-//           "Desserts",
-//           "Rajasthani",
-//           "South Indian",
-//           "Maharashtrian",
-//           "Sweets"
-//         ],
-//         "avgRating": 4.5,
-//         "veg": true,
-//         "parentId": "319582",
-//         "avgRatingString": "4.5",
-//         "totalRatingsString": "1K+",
-//         "sla": {
-//           "deliveryTime": 32,
-//           "lastMileTravel": 4.4,
-//           "serviceability": "SERVICEABLE",
-//           "slaString": "30-35 mins",
-//           "lastMileTravelString": "4.4 km",
-//           "iconType": "ICON_TYPE_EMPTY"
-//         },
-//         "availability": {
-//           "nextCloseTime": "2024-04-17 23:45:00",
-//           "opened": true
-//         },
-//         "badges": {
-//           "imageBadges": [
-//             {
-//               "imageId": "v1695133679/badges/Pure_Veg111.png",
-//               "description": "pureveg"
-//             }
-//           ],
-//           "textExtendedBadges": [
-//             {
-//               "iconId": "guiltfree/GF_Logo_android_3x",
-//               "shortDescription": "brand",
-//               "fontColor": "#7E808C"
-//             }
-//           ]
-//         },
-//         "isOpen": true,
-//         "type": "F",
-//         "badgesV2": {
-//           "entityBadges": {
-//             "imageBased": {
-//               "badgeObject": [
-//                 {
-//                   "attributes": {
-//                     "description": "pureveg",
-//                     "imageId": "v1695133679/badges/Pure_Veg111.png"
-//                   }
-//                 }
-//               ]
-//             },
-//             "textBased": {
-//             },
-//             "textExtendedBadges": {
-//               "badgeObject": [
-//                 {
-//                   "attributes": {
-//                     "description": "",
-//                     "fontColor": "#7E808C",
-//                     "iconId": "guiltfree/GF_Logo_android_3x",
-//                     "shortDescription": "brand"
-//                   }
-//                 }
-//               ]
-//             }
-//           }
-//         },
-//         "aggregatedDiscountInfoV3": {
-//           "header": "50% OFF",
-//           "subHeader": "UPTO ₹100"
-//         },
-//         "differentiatedUi": {
-//           "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-//           "differentiatedUiMediaDetails": {
-//             "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-//             "lottie": {
-//             },
-//             "video": {
-//             }
-//           }
-//         },
-//         "reviewsSummary": {
-//         },
-//         "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-//         "restaurantOfferPresentationInfo": {
-//         }
-//       },
-//       "analytics": {
-//       },
-//       "cta": {
-//         "link": "https://www.swiggy.com/restaurants/great-indian-khichdi-by-eatfit-chuna-mandi-paharganj-delhi-258198",
-//         "type": "WEBLINK"
-//       }
-//     },
-//     {
-//       "info": {
-//         "id": "581107",
-//         "name": "Nirula's",
-//         "cloudinaryImageId": "a66fa8f5befa65947d9e20f29a863ce0",
-//         "locality": "Jawahar Nagar",
-//         "areaName": "Kamla Nagar",
-//         "costForTwo": "₹500 for two",
-//         "cuisines": [
-//           "Ice Cream",
-//           "Pizzas",
-//           "Fast Food"
-//         ],
-//         "avgRating": 4.4,
-//         "parentId": "1738",
-//         "avgRatingString": "4.4",
-//         "totalRatingsString": "100+",
-//         "sla": {
-//           "deliveryTime": 27,
-//           "lastMileTravel": 5,
-//           "serviceability": "SERVICEABLE",
-//           "slaString": "25-30 mins",
-//           "lastMileTravelString": "5.0 km",
-//           "iconType": "ICON_TYPE_EMPTY"
-//         },
-//         "availability": {
-//           "nextCloseTime": "2024-04-17 23:00:00",
-//           "opened": true
-//         },
-//         "badges": {
-//           "textExtendedBadges": [
-//             {
-//               "iconId": "guiltfree/GF_Logo_android_3x",
-//               "shortDescription": "options available",
-//               "fontColor": "#7E808C"
-//             }
-//           ]
-//         },
-//         "isOpen": true,
-//         "type": "F",
-//         "badgesV2": {
-//           "entityBadges": {
-//             "imageBased": {
-//             },
-//             "textBased": {
-//             },
-//             "textExtendedBadges": {
-//               "badgeObject": [
-//                 {
-//                   "attributes": {
-//                     "description": "",
-//                     "fontColor": "#7E808C",
-//                     "iconId": "guiltfree/GF_Logo_android_3x",
-//                     "shortDescription": "options available"
-//                   }
-//                 }
-//               ]
-//             }
-//           }
-//         },
-//         "aggregatedDiscountInfoV3": {
-//           "header": "30% OFF",
-//           "subHeader": "UPTO ₹75"
-//         },
-//         "differentiatedUi": {
-//           "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-//           "differentiatedUiMediaDetails": {
-//             "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-//             "lottie": {
-//             },
-//             "video": {
-//             }
-//           }
-//         },
-//         "reviewsSummary": {
-//         },
-//         "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-//         "restaurantOfferPresentationInfo": {
-//         }
-//       },
-//       "analytics": {
-//       },
-//       "cta": {
-//         "link": "https://www.swiggy.com/restaurants/nirulas-jawahar-nagar-kamla-nagar-delhi-581107",
-//         "type": "WEBLINK"
-//       }
-//     },
-//     {
-//       "info": {
-//         "id": "21301",
-//         "name": "Barista Coffee",
-//         "cloudinaryImageId": "b64bf721e12e7b3df82c832898999c51",
-//         "locality": "Connaught Place",
-//         "areaName": "Connaught Place",
-//         "costForTwo": "₹350 for two",
-//         "cuisines": [
-//           "Beverages",
-//           "Snacks",
-//           "Desserts"
-//         ],
-//         "avgRating": 4.4,
-//         "parentId": "2359",
-//         "avgRatingString": "4.4",
-//         "totalRatingsString": "1K+",
-//         "sla": {
-//           "deliveryTime": 29,
-//           "lastMileTravel": 4.8,
-//           "serviceability": "SERVICEABLE",
-//           "slaString": "25-30 mins",
-//           "lastMileTravelString": "4.8 km",
-//           "iconType": "ICON_TYPE_EMPTY"
-//         },
-//         "availability": {
-//           "nextCloseTime": "2024-04-17 22:00:00",
-//           "opened": true
-//         },
-//         "badges": {
-//           "textExtendedBadges": [
-//             {
-//               "iconId": "guiltfree/GF_Logo_android_3x",
-//               "shortDescription": "options available",
-//               "fontColor": "#7E808C"
-//             }
-//           ]
-//         },
-//         "isOpen": true,
-//         "type": "F",
-//         "badgesV2": {
-//           "entityBadges": {
-//             "imageBased": {
-//             },
-//             "textBased": {
-//             },
-//             "textExtendedBadges": {
-//               "badgeObject": [
-//                 {
-//                   "attributes": {
-//                     "description": "",
-//                     "fontColor": "#7E808C",
-//                     "iconId": "guiltfree/GF_Logo_android_3x",
-//                     "shortDescription": "options available"
-//                   }
-//                 }
-//               ]
-//             }
-//           }
-//         },
-//         "aggregatedDiscountInfoV3": {
-//           "header": "50% OFF",
-//           "subHeader": "UPTO ₹90"
-//         },
-//         "differentiatedUi": {
-//           "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-//           "differentiatedUiMediaDetails": {
-//             "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-//             "lottie": {
-//             },
-//             "video": {
-//             }
-//           }
-//         },
-//         "reviewsSummary": {
-//         },
-//         "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-//         "restaurantOfferPresentationInfo": {
-//         }
-//       },
-//       "analytics": {
-//       },
-//       "cta": {
-//         "link": "https://www.swiggy.com/restaurants/barista-coffee-connaught-place-delhi-21301",
-//         "type": "WEBLINK"
-//       }
-//     },
-//     {
-//       "info": {
-//         "id": "789690",
-//         "name": "FNP Cakes By Ferns N Petals",
-//         "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2024/4/16/700acfd8-ccaf-4535-9391-88231a309984_789690.jpg",
-//         "locality": "Under Hill Road",
-//         "areaName": "Civil Lines",
-//         "costForTwo": "₹499 for two",
-//         "cuisines": [
-//           "Bakery"
-//         ],
-//         "avgRating": 4.1,
-//         "veg": true,
-//         "parentId": "339638",
-//         "avgRatingString": "4.1",
-//         "totalRatingsString": "10+",
-//         "sla": {
-//           "deliveryTime": 42,
-//           "lastMileTravel": 4.1,
-//           "serviceability": "SERVICEABLE",
-//           "slaString": "40-45 mins",
-//           "lastMileTravelString": "4.1 km",
-//           "iconType": "ICON_TYPE_EMPTY"
-//         },
-//         "availability": {
-//           "nextCloseTime": "2024-04-17 21:45:00",
-//           "opened": true
-//         },
-//         "badges": {
-//         },
-//         "isOpen": true,
-//         "type": "F",
-//         "badgesV2": {
-//           "entityBadges": {
-//             "imageBased": {
-//             },
-//             "textBased": {
-//             },
-//             "textExtendedBadges": {
-//             }
-//           }
-//         },
-//         "aggregatedDiscountInfoV3": {
-//           "header": "50% OFF",
-//           "subHeader": "UPTO ₹100"
-//         },
-//         "differentiatedUi": {
-//           "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-//           "differentiatedUiMediaDetails": {
-//             "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-//             "lottie": {
-//             },
-//             "video": {
-//             }
-//           }
-//         },
-//         "reviewsSummary": {
-//         },
-//         "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-//         "isNewlyOnboarded": true,
-//         "restaurantOfferPresentationInfo": {
-//         }
-//       },
-//       "analytics": {
-//       },
-//       "cta": {
-//         "link": "https://www.swiggy.com/restaurants/fnp-cakes-by-ferns-n-petals-under-hill-road-civil-lines-delhi-789690",
-//         "type": "WEBLINK"
-//       }
-//     },
-// ];
 const Body = ()=>{
     _s();
-    // Locat state variable - Super powerful variable
-    const [ListOfRestaurants, setListOfRestaurant] = (0, _react.useState)((0, _mockDataDefault.default));
-    const [filteredRestaurant, setFilteredRestaurant] = (0, _react.useState)((0, _mockDataDefault.default));
-    const [searchText, setSearchText] = (0, _react.useState)(" ");
-    //const RestaurantCardPromoted = withPromotedLable(RestaurantCard);
-    console.log("Body render", ListOfRestaurants);
+    let [listOfRestaurents, setListofRestraunt] = (0, _react.useState)([]);
+    let [filterdRestaurant, setfilterdRestaurant] = (0, _react.useState)([]);
+    const [searchText, setsearchText] = (0, _react.useState)("");
     (0, _react.useEffect)(()=>{
         fetchData();
     }, []);
     const fetchData = async ()=>{
-        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&collection=80476&tags=layout_BAU_Contextual%2Cparatha%2Cads_pc_paratha&sortBy=&filters=&type=rcv2&offset=0&page_type=null");
+        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7030425&lng=77.430373&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
         const json = await data.json();
-        console.log(json);
-    //setListOfRestaurant(json.data.cards[5])
-    //setListOfRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    // const arrayOfCards = json?.data?.cards;
-    // const restaurantListing = "restaurant_grid_listing";
-    //console.log(json);
-    // for (const cardObj of arrayOfCards) {
-    //     if (cardObj?.card?.card && cardObj?.card?.card?.id === restaurantListing) {
-    //       const resData =
-    //       cardObj.card?.card?.gridElements?.infoWithStyle?.restaurants;
-    //       setListOfRestaurants(resData);
-    //       setFilteredRestaurant(resData);
-    //     }
-    //   }
+        const arrayOfCards = json?.data?.cards;
+        const restaurant_list = "restaurant_grid_listing";
+        // console.log(json);
+        // Optional Chaining
+        for (const cardObj of arrayOfCards)if (cardObj?.card?.card && cardObj?.card?.card?.id === restaurant_list) {
+            const resData = cardObj.card?.card?.gridElements?.infoWithStyle?.restaurants;
+            setListofRestraunt(resData);
+            setfilterdRestaurant(resData);
+        }
     };
     const onlineStatus = (0, _useOnlineStatusDefault.default)();
     if (onlineStatus === false) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
-        children: "Looks like you are offline!! Please check your internet connection;"
+        children: "Looks like you're offline!! Please check your internet connection;"
     }, void 0, false, {
         fileName: "src/components/Body.js",
-        lineNumber: 1301,
-        columnNumber: 9
+        lineNumber: 43,
+        columnNumber: 7
     }, undefined);
     const { loggedInUser, setUserName } = (0, _react.useContext)((0, _userContextDefault.default));
-    return ListOfRestaurants.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _shimmerDefault.default), {}, void 0, false, {
+    return listOfRestaurents.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _shimmerDefault.default), {}, void 0, false, {
         fileName: "src/components/Body.js",
-        lineNumber: 1312,
-        columnNumber: 45
+        lineNumber: 49,
+        columnNumber: 5
     }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "body",
         children: [
@@ -37773,111 +36615,123 @@ const Body = ()=>{
                 className: "filter flex",
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        className: "search m-4 p-4",
+                        className: "search m-4 p-4 ",
                         children: [
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
                                 type: "text",
-                                className: "border border-solid border-black",
+                                className: "border border-solid border-black rounded-br-sm rounded-sm ",
                                 value: searchText,
                                 onChange: (e)=>{
-                                    setSearchText(e.target.value);
+                                    setsearchText(e.target.value);
                                 }
                             }, void 0, false, {
                                 fileName: "src/components/Body.js",
-                                lineNumber: 1316,
-                                columnNumber: 21
+                                lineNumber: 54,
+                                columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                                 className: "px-4 py-2 bg-green-100 m-4 rounded-lg",
                                 onClick: ()=>{
-                                    console.log(searchText);
-                                    const filteredRestaurant = ListOfRestaurants.filter((res)=>res.info.name.toLowerCase().includes(searchText.toLowerCase()));
-                                    setFilteredRestaurant(filteredRestaurant);
+                                    const filterdRestaurant = listOfRestaurents.filter((res)=>res.info?.name.toLowerCase().includes(searchText));
+                                    setfilterdRestaurant(filterdRestaurant);
                                 },
                                 children: "Search"
                             }, void 0, false, {
                                 fileName: "src/components/Body.js",
-                                lineNumber: 1324,
-                                columnNumber: 25
+                                lineNumber: 63,
+                                columnNumber: 11
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 1315,
-                        columnNumber: 17
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        className: "search m-4 p-4 flex items-center",
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                            className: "px-4 py-2 bg-gray-100 rounded-lg",
-                            onClick: ()=>{
-                                const filteredList = ListOfRestaurants.filter((res)=>res.info.avgRating > 4.1);
-                                setListOfRestaurant(filteredList);
-                            },
-                            children: "Top Rated Restaurants"
-                        }, void 0, false, {
-                            fileName: "src/components/Body.js",
-                            lineNumber: 1340,
-                            columnNumber: 17
-                        }, undefined)
-                    }, void 0, false, {
-                        fileName: "src/components/Body.js",
-                        lineNumber: 1339,
-                        columnNumber: 17
+                        lineNumber: 53,
+                        columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                         className: "search m-4 p-4 flex items-center",
                         children: [
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("lable", {
-                                children: "Username : "
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                                children: " UserName : "
                             }, void 0, false, {
                                 fileName: "src/components/Body.js",
-                                lineNumber: 1356,
-                                columnNumber: 17
+                                lineNumber: 77,
+                                columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                                className: "border border-black p-2",
+                                className: "border border-black p-1",
                                 value: loggedInUser,
                                 onChange: (e)=>setUserName(e.target.value)
                             }, void 0, false, {
                                 fileName: "src/components/Body.js",
-                                lineNumber: 1357,
-                                columnNumber: 17
+                                lineNumber: 78,
+                                columnNumber: 11
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 1355,
-                        columnNumber: 13
+                        lineNumber: 76,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "search m-4 p-8",
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                            className: "bg-green-100 hover:bg-green-300  text-black font-bold py-2 px-4 rounded-lg  ",
+                            onClick: ()=>{
+                                const filteredList = listOfRestaurents.filter((res)=>res.info?.avgRating > 4);
+                                setfilterdRestaurant(filteredList);
+                            },
+                            children: "Top rated Restaurent"
+                        }, void 0, false, {
+                            fileName: "src/components/Body.js",
+                            lineNumber: 86,
+                            columnNumber: 11
+                        }, undefined)
+                    }, void 0, false, {
+                        fileName: "src/components/Body.js",
+                        lineNumber: 85,
+                        columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/Body.js",
-                lineNumber: 1314,
-                columnNumber: 13
+                lineNumber: 52,
+                columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "flex flex-wrap",
-                children: filteredRestaurant.map((restaurant)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _restaurantCardDefault.default), {
-                        resData: restaurant
-                    }, restaurant.info.id, false, {
+                children: filterdRestaurant?.map((restaurants)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                        to: "/restaurants/" + restaurants?.info.id,
+                        children: restaurants?.info.Promoted ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(RestaurantCardPromoted, {
+                            resData: restaurants?.info
+                        }, void 0, false, {
+                            fileName: "src/components/Body.js",
+                            lineNumber: 107,
+                            columnNumber: 15
+                        }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _restaurantCardDefault.default), {
+                            resData: restaurants?.info
+                        }, void 0, false, {
+                            fileName: "src/components/Body.js",
+                            lineNumber: 109,
+                            columnNumber: 15
+                        }, undefined)
+                    }, restaurants?.info.id, false, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 1381,
-                        columnNumber: 25
+                        lineNumber: 102,
+                        columnNumber: 11
                     }, undefined))
             }, void 0, false, {
                 fileName: "src/components/Body.js",
-                lineNumber: 1377,
-                columnNumber: 13
+                lineNumber: 100,
+                columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/Body.js",
-        lineNumber: 1313,
-        columnNumber: 9
+        lineNumber: 51,
+        columnNumber: 5
     }, undefined);
 };
-_s(Body, "HYzqmRv4TeeSx9+wWNLvB8MS8/E=", false, function() {
+_s(Body, "r2KWHboF0blpDk6XQUGSxiA+SkQ=", false, function() {
     return [
         (0, _useOnlineStatusDefault.default)
     ];
@@ -37892,1175 +36746,11 @@ $RefreshReg$(_c, "Body");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","./RestaurantCard":"bMboU","react":"21dqq","../utils/mockData":"iOpE9","./Shimmer":"g6ZGj","../utils/useOnlineStatus":"181Ji","../utils/UserContext":"c5vgB","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bMboU":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$ffb1 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./shimmer":"fWXGy","react-router-dom":"9xmpe","../utils/useOnlineStatus":"181Ji","../utils/UserContext":"c5vgB","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./RestaurantCard":"bMboU"}],"fWXGy":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$79c2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$ffb1.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-var _constants = require("../utils/constants");
-var _userContext = require("../utils/UserContext");
-var _userContextDefault = parcelHelpers.interopDefault(_userContext);
-var _s = $RefreshSig$();
-const RestaurantCard = (props)=>{
-    _s();
-    const { resData } = props;
-    const { loggedInUser } = (0, _react.useContext)((0, _userContextDefault.default));
-    const { cloudinaryImageId, name, cuisines, avgRating, costForTwo } = resData?.info;
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        className: "p-4 m-4 w-[220px] rounded-lg bg-gray-100 hover:bg-gray-200",
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                className: "rounded-lg",
-                alt: "res-logo",
-                src: (0, _constants.CDN_URL) + cloudinaryImageId
-            }, void 0, false, {
-                fileName: "src/components/RestaurantCard.js",
-                lineNumber: 23,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
-                className: "font-bold py-4 text-lg",
-                children: name
-            }, void 0, false, {
-                fileName: "src/components/RestaurantCard.js",
-                lineNumber: 29,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
-                children: cuisines.join(", ")
-            }, void 0, false, {
-                fileName: "src/components/RestaurantCard.js",
-                lineNumber: 30,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
-                children: [
-                    avgRating,
-                    " stars"
-                ]
-            }, void 0, true, {
-                fileName: "src/components/RestaurantCard.js",
-                lineNumber: 31,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
-                children: costForTwo
-            }, void 0, false, {
-                fileName: "src/components/RestaurantCard.js",
-                lineNumber: 32,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
-                children: [
-                    resData.info.sla.deliveryTime,
-                    " minutes"
-                ]
-            }, void 0, true, {
-                fileName: "src/components/RestaurantCard.js",
-                lineNumber: 34,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
-                children: [
-                    "user : ",
-                    loggedInUser
-                ]
-            }, void 0, true, {
-                fileName: "src/components/RestaurantCard.js",
-                lineNumber: 35,
-                columnNumber: 13
-            }, undefined)
-        ]
-    }, void 0, true, {
-        fileName: "src/components/RestaurantCard.js",
-        lineNumber: 22,
-        columnNumber: 9
-    }, undefined);
-};
-_s(RestaurantCard, "jbx6PUTrYC7XqN7CfzVRGoHVVmo=");
-_c = RestaurantCard;
-exports.default = RestaurantCard;
-var _c;
-$RefreshReg$(_c, "RestaurantCard");
-
-  $parcel$ReactRefreshHelpers$ffb1.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../utils/constants":"hB8jg","../utils/UserContext":"c5vgB","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"iOpE9":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-const resList = [
-    {
-        "info": {
-            "id": "107452",
-            "name": "Chaayos Chai+Snacks=Relax",
-            "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2024/4/9/1dbdf671-cbed-4fc1-8b43-faa0165112e9_107452.JPG",
-            "locality": "Kashmiri Gate",
-            "areaName": "Kashmiri Gate",
-            "costForTwo": "\u20B9250 for two",
-            "cuisines": [
-                "Bakery",
-                "Beverages",
-                "Chaat",
-                "Desserts",
-                "Home Food",
-                "Italian",
-                "Maharashtrian",
-                "Snacks",
-                "Street Food",
-                "Sweets"
-            ],
-            "avgRating": 4.5,
-            "veg": true,
-            "parentId": "281782",
-            "avgRatingString": "4.5",
-            "totalRatingsString": "1K+",
-            "sla": {
-                "deliveryTime": 39,
-                "lastMileTravel": 2.9,
-                "serviceability": "SERVICEABLE",
-                "slaString": "35-40 mins",
-                "lastMileTravelString": "2.9 km",
-                "iconType": "ICON_TYPE_EMPTY"
-            },
-            "availability": {
-                "nextCloseTime": "2024-04-17 23:00:00",
-                "opened": true
-            },
-            "badges": {
-                "imageBadges": [
-                    {
-                        "imageId": "Rxawards/_CATEGORY-Cafe%20&%20Chai.png",
-                        "description": "Delivery!"
-                    },
-                    {
-                        "imageId": "v1695133679/badges/Pure_Veg111.png",
-                        "description": "pureveg"
-                    }
-                ],
-                "textExtendedBadges": [
-                    {
-                        "iconId": "guiltfree/GF_Logo_android_3x",
-                        "shortDescription": "options available",
-                        "fontColor": "#7E808C"
-                    }
-                ]
-            },
-            "isOpen": true,
-            "type": "F",
-            "badgesV2": {
-                "entityBadges": {
-                    "imageBased": {
-                        "badgeObject": [
-                            {
-                                "attributes": {
-                                    "description": "Delivery!",
-                                    "imageId": "Rxawards/_CATEGORY-Cafe%20&%20Chai.png"
-                                }
-                            },
-                            {
-                                "attributes": {
-                                    "description": "pureveg",
-                                    "imageId": "v1695133679/badges/Pure_Veg111.png"
-                                }
-                            }
-                        ]
-                    },
-                    "textBased": {},
-                    "textExtendedBadges": {
-                        "badgeObject": [
-                            {
-                                "attributes": {
-                                    "description": "",
-                                    "fontColor": "#7E808C",
-                                    "iconId": "guiltfree/GF_Logo_android_3x",
-                                    "shortDescription": "options available"
-                                }
-                            }
-                        ]
-                    }
-                }
-            },
-            "aggregatedDiscountInfoV3": {
-                "header": "50% OFF",
-                "subHeader": "UPTO \u20B990"
-            },
-            "differentiatedUi": {
-                "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-                "differentiatedUiMediaDetails": {
-                    "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-                    "lottie": {},
-                    "video": {}
-                }
-            },
-            "reviewsSummary": {},
-            "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-            "restaurantOfferPresentationInfo": {}
-        },
-        "analytics": {},
-        "cta": {
-            "link": "https://www.swiggy.com/restaurants/chaayos-chai-snacks-relax-kashmiri-gate-delhi-107452",
-            "type": "WEBLINK"
-        }
-    },
-    {
-        "info": {
-            "id": "76225",
-            "name": "Subway",
-            "cloudinaryImageId": "63178e3e64d503a479f2a2048a474552",
-            "locality": "Malka Ganj Road",
-            "areaName": "Kamla Nagar",
-            "costForTwo": "\u20B9350 for two",
-            "cuisines": [
-                "Salads",
-                "Snacks",
-                "Desserts",
-                "Beverages"
-            ],
-            "avgRating": 4.1,
-            "parentId": "2",
-            "avgRatingString": "4.1",
-            "totalRatingsString": "5K+",
-            "sla": {
-                "deliveryTime": 38,
-                "lastMileTravel": 5,
-                "serviceability": "SERVICEABLE",
-                "slaString": "35-40 mins",
-                "lastMileTravelString": "5.0 km",
-                "iconType": "ICON_TYPE_EMPTY"
-            },
-            "availability": {
-                "nextCloseTime": "2024-04-17 23:59:00",
-                "opened": true
-            },
-            "badges": {
-                "textExtendedBadges": [
-                    {
-                        "iconId": "guiltfree/GF_Logo_android_3x",
-                        "shortDescription": "options available",
-                        "fontColor": "#7E808C"
-                    }
-                ]
-            },
-            "isOpen": true,
-            "type": "F",
-            "badgesV2": {
-                "entityBadges": {
-                    "imageBased": {},
-                    "textBased": {},
-                    "textExtendedBadges": {
-                        "badgeObject": [
-                            {
-                                "attributes": {
-                                    "description": "",
-                                    "fontColor": "#7E808C",
-                                    "iconId": "guiltfree/GF_Logo_android_3x",
-                                    "shortDescription": "options available"
-                                }
-                            }
-                        ]
-                    }
-                }
-            },
-            "aggregatedDiscountInfoV3": {
-                "header": "40% OFF",
-                "subHeader": "UPTO \u20B980"
-            },
-            "differentiatedUi": {
-                "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-                "differentiatedUiMediaDetails": {
-                    "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-                    "lottie": {},
-                    "video": {}
-                }
-            },
-            "reviewsSummary": {},
-            "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-            "restaurantOfferPresentationInfo": {}
-        },
-        "analytics": {},
-        "cta": {
-            "link": "https://www.swiggy.com/restaurants/subway-malka-ganj-road-kamla-nagar-delhi-76225",
-            "type": "WEBLINK"
-        }
-    },
-    {
-        "info": {
-            "id": "253727",
-            "name": "McDonald's",
-            "cloudinaryImageId": "535fc9f9c135f7982317bbb6a64a1ffc",
-            "locality": "Kashmere Gate Metro Station",
-            "areaName": "Kashmiri Gate",
-            "costForTwo": "\u20B9400 for two",
-            "cuisines": [
-                "American"
-            ],
-            "avgRating": 4.2,
-            "parentId": "630",
-            "avgRatingString": "4.2",
-            "totalRatingsString": "1K+",
-            "sla": {
-                "deliveryTime": 38,
-                "lastMileTravel": 2.9,
-                "serviceability": "SERVICEABLE",
-                "slaString": "35-40 mins",
-                "lastMileTravelString": "2.9 km",
-                "iconType": "ICON_TYPE_EMPTY"
-            },
-            "availability": {
-                "nextCloseTime": "2024-04-17 22:45:00",
-                "opened": true
-            },
-            "badges": {
-                "imageBadges": [
-                    {
-                        "imageId": "Rxawards/_CATEGORY-Burger.png",
-                        "description": "Delivery!"
-                    }
-                ]
-            },
-            "isOpen": true,
-            "type": "F",
-            "badgesV2": {
-                "entityBadges": {
-                    "imageBased": {
-                        "badgeObject": [
-                            {
-                                "attributes": {
-                                    "description": "Delivery!",
-                                    "imageId": "Rxawards/_CATEGORY-Burger.png"
-                                }
-                            }
-                        ]
-                    },
-                    "textBased": {},
-                    "textExtendedBadges": {}
-                }
-            },
-            "aggregatedDiscountInfoV3": {
-                "header": "30% OFF",
-                "subHeader": "UPTO \u20B975"
-            },
-            "differentiatedUi": {
-                "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-                "differentiatedUiMediaDetails": {
-                    "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-                    "lottie": {},
-                    "video": {}
-                }
-            },
-            "reviewsSummary": {},
-            "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-            "restaurantOfferPresentationInfo": {}
-        },
-        "analytics": {},
-        "cta": {
-            "link": "https://www.swiggy.com/restaurants/mcdonalds-kashmere-gate-metro-station-kashmiri-gate-delhi-253727",
-            "type": "WEBLINK"
-        }
-    },
-    {
-        "info": {
-            "id": "611107",
-            "name": "Burger King",
-            "cloudinaryImageId": "e33e1d3ba7d6b2bb0d45e1001b731fcf",
-            "locality": "Kashmere Gate Metro Station",
-            "areaName": "Kashmere Gate",
-            "costForTwo": "\u20B9350 for two",
-            "cuisines": [
-                "American"
-            ],
-            "avgRating": 4.1,
-            "parentId": "166",
-            "avgRatingString": "4.1",
-            "totalRatingsString": "500+",
-            "sla": {
-                "deliveryTime": 50,
-                "lastMileTravel": 3.6,
-                "serviceability": "SERVICEABLE",
-                "slaString": "45-50 mins",
-                "lastMileTravelString": "3.6 km",
-                "iconType": "ICON_TYPE_EMPTY"
-            },
-            "availability": {
-                "nextCloseTime": "2024-04-18 02:00:00",
-                "opened": true
-            },
-            "badges": {
-                "imageBadges": [
-                    {
-                        "imageId": "Rxawards/_CATEGORY-Burger.png",
-                        "description": "Delivery!"
-                    }
-                ]
-            },
-            "isOpen": true,
-            "type": "F",
-            "badgesV2": {
-                "entityBadges": {
-                    "imageBased": {
-                        "badgeObject": [
-                            {
-                                "attributes": {
-                                    "description": "Delivery!",
-                                    "imageId": "Rxawards/_CATEGORY-Burger.png"
-                                }
-                            }
-                        ]
-                    },
-                    "textBased": {},
-                    "textExtendedBadges": {}
-                }
-            },
-            "aggregatedDiscountInfoV3": {
-                "header": "ITEMS",
-                "subHeader": "AT \u20B9139"
-            },
-            "differentiatedUi": {
-                "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-                "differentiatedUiMediaDetails": {
-                    "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-                    "lottie": {},
-                    "video": {}
-                }
-            },
-            "reviewsSummary": {},
-            "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-            "restaurantOfferPresentationInfo": {}
-        },
-        "analytics": {},
-        "cta": {
-            "link": "https://www.swiggy.com/restaurants/burger-king-metro-station-kashmere-gate-delhi-611107",
-            "type": "WEBLINK"
-        }
-    },
-    {
-        "info": {
-            "id": "263663",
-            "name": "Upwas Specials by Lunchbox",
-            "cloudinaryImageId": "y2oysbch5umyyagezvwj",
-            "locality": "Gandhi Market",
-            "areaName": "Barakhamba",
-            "costForTwo": "\u20B9200 for two",
-            "cuisines": [
-                "Biryani",
-                "North Indian",
-                "Desserts",
-                "Beverages"
-            ],
-            "avgRating": 4.3,
-            "veg": true,
-            "parentId": "21938",
-            "avgRatingString": "4.3",
-            "totalRatingsString": "100+",
-            "sla": {
-                "deliveryTime": 34,
-                "lastMileTravel": 3.6,
-                "serviceability": "SERVICEABLE",
-                "slaString": "30-35 mins",
-                "lastMileTravelString": "3.6 km",
-                "iconType": "ICON_TYPE_EMPTY"
-            },
-            "availability": {
-                "nextCloseTime": "2024-04-17 23:59:00",
-                "opened": true
-            },
-            "badges": {
-                "imageBadges": [
-                    {
-                        "imageId": "v1695133679/badges/Pure_Veg111.png",
-                        "description": "pureveg"
-                    }
-                ]
-            },
-            "isOpen": true,
-            "type": "F",
-            "badgesV2": {
-                "entityBadges": {
-                    "imageBased": {
-                        "badgeObject": [
-                            {
-                                "attributes": {
-                                    "description": "pureveg",
-                                    "imageId": "v1695133679/badges/Pure_Veg111.png"
-                                }
-                            }
-                        ]
-                    },
-                    "textBased": {},
-                    "textExtendedBadges": {}
-                }
-            },
-            "aggregatedDiscountInfoV3": {
-                "header": "50% OFF",
-                "subHeader": "UPTO \u20B9100"
-            },
-            "differentiatedUi": {
-                "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-                "differentiatedUiMediaDetails": {
-                    "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-                    "lottie": {},
-                    "video": {}
-                }
-            },
-            "reviewsSummary": {},
-            "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-            "restaurantOfferPresentationInfo": {}
-        },
-        "analytics": {},
-        "cta": {
-            "link": "https://www.swiggy.com/restaurants/upwas-specials-by-lunchbox-gandhi-market-barakhamba-delhi-263663",
-            "type": "WEBLINK"
-        }
-    },
-    {
-        "info": {
-            "id": "60643",
-            "name": "Hira Sweets",
-            "cloudinaryImageId": "ttl0azfrovxbrheica7z",
-            "locality": "Connaught Place",
-            "areaName": "Connaught Place",
-            "costForTwo": "\u20B9600 for two",
-            "cuisines": [
-                "North Indian",
-                "South Indian",
-                "Chinese",
-                "Continental",
-                "Bakery",
-                "Street Food",
-                "Sweets",
-                "Desserts",
-                "Beverages"
-            ],
-            "avgRating": 4.4,
-            "parentId": "5155",
-            "avgRatingString": "4.4",
-            "totalRatingsString": "5K+",
-            "sla": {
-                "deliveryTime": 32,
-                "lastMileTravel": 4.5,
-                "serviceability": "SERVICEABLE",
-                "slaString": "30-35 mins",
-                "lastMileTravelString": "4.5 km",
-                "iconType": "ICON_TYPE_EMPTY"
-            },
-            "availability": {
-                "nextCloseTime": "2024-04-17 23:59:00",
-                "opened": true
-            },
-            "badges": {
-                "imageBadges": [
-                    {
-                        "imageId": "Rxawards/_CATEGORY-Mithai.png",
-                        "description": "Delivery!"
-                    }
-                ]
-            },
-            "isOpen": true,
-            "aggregatedDiscountInfoV2": {},
-            "type": "F",
-            "badgesV2": {
-                "entityBadges": {
-                    "imageBased": {
-                        "badgeObject": [
-                            {
-                                "attributes": {
-                                    "description": "Delivery!",
-                                    "imageId": "Rxawards/_CATEGORY-Mithai.png"
-                                }
-                            }
-                        ]
-                    },
-                    "textBased": {},
-                    "textExtendedBadges": {}
-                }
-            },
-            "differentiatedUi": {
-                "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-                "differentiatedUiMediaDetails": {
-                    "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-                    "lottie": {},
-                    "video": {}
-                }
-            },
-            "reviewsSummary": {},
-            "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-            "restaurantOfferPresentationInfo": {}
-        },
-        "analytics": {},
-        "cta": {
-            "link": "https://www.swiggy.com/restaurants/hira-sweets-connaught-place-delhi-60643",
-            "type": "WEBLINK"
-        }
-    },
-    {
-        "info": {
-            "id": "378311",
-            "name": "Blue Tokai Coffee Roasters",
-            "cloudinaryImageId": "1a0521375f07155eda2f1ed263206831",
-            "locality": "Chanakyapuri",
-            "areaName": "Connaught Place",
-            "costForTwo": "\u20B9600 for two",
-            "cuisines": [
-                "Cafe",
-                "Coffee",
-                "Beverages"
-            ],
-            "avgRating": 4.4,
-            "parentId": "2682",
-            "avgRatingString": "4.4",
-            "totalRatingsString": "500+",
-            "sla": {
-                "deliveryTime": 27,
-                "lastMileTravel": 4.3,
-                "serviceability": "SERVICEABLE",
-                "slaString": "25-30 mins",
-                "lastMileTravelString": "4.3 km",
-                "iconType": "ICON_TYPE_EMPTY"
-            },
-            "availability": {
-                "nextCloseTime": "2024-04-17 23:00:00",
-                "opened": true
-            },
-            "badges": {
-                "imageBadges": [
-                    {
-                        "imageId": "newg.png",
-                        "description": "Gourmet"
-                    }
-                ]
-            },
-            "isOpen": true,
-            "type": "F",
-            "badgesV2": {
-                "entityBadges": {
-                    "imageBased": {
-                        "badgeObject": [
-                            {
-                                "attributes": {
-                                    "description": "Gourmet",
-                                    "imageId": "newg.png"
-                                }
-                            }
-                        ]
-                    },
-                    "textBased": {},
-                    "textExtendedBadges": {}
-                }
-            },
-            "aggregatedDiscountInfoV3": {
-                "header": "\u20B975 OFF",
-                "subHeader": "ABOVE \u20B9249",
-                "discountTag": "FLAT DEAL"
-            },
-            "differentiatedUi": {
-                "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-                "differentiatedUiMediaDetails": {
-                    "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-                    "lottie": {},
-                    "video": {}
-                }
-            },
-            "reviewsSummary": {},
-            "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-            "restaurantOfferPresentationInfo": {}
-        },
-        "analytics": {},
-        "cta": {
-            "link": "https://www.swiggy.com/restaurants/blue-tokai-coffee-roasters-chanakyapuri-connaught-place-delhi-378311",
-            "type": "WEBLINK"
-        }
-    },
-    {
-        "info": {
-            "id": "18579",
-            "name": "Bille Di Hatti ",
-            "cloudinaryImageId": "agg7imcn7bs2bng028zn",
-            "locality": "Kamla Nagar",
-            "areaName": "Kamla Nagar",
-            "costForTwo": "\u20B9100 for two",
-            "cuisines": [
-                "Street Food",
-                "Snacks",
-                "North Indian"
-            ],
-            "avgRating": 4.2,
-            "parentId": "4639",
-            "avgRatingString": "4.2",
-            "totalRatingsString": "10K+",
-            "sla": {
-                "deliveryTime": 28,
-                "lastMileTravel": 5.6,
-                "serviceability": "SERVICEABLE",
-                "slaString": "25-30 mins",
-                "lastMileTravelString": "5.6 km",
-                "iconType": "ICON_TYPE_EMPTY"
-            },
-            "availability": {
-                "nextCloseTime": "2024-04-17 19:30:00",
-                "opened": true
-            },
-            "badges": {},
-            "isOpen": true,
-            "type": "F",
-            "badgesV2": {
-                "entityBadges": {
-                    "imageBased": {},
-                    "textBased": {},
-                    "textExtendedBadges": {}
-                }
-            },
-            "aggregatedDiscountInfoV3": {
-                "header": "\u20B9125 OFF",
-                "subHeader": "ABOVE \u20B9199",
-                "discountTag": "FLAT DEAL"
-            },
-            "differentiatedUi": {
-                "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-                "differentiatedUiMediaDetails": {
-                    "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-                    "lottie": {},
-                    "video": {}
-                }
-            },
-            "reviewsSummary": {},
-            "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-            "restaurantOfferPresentationInfo": {}
-        },
-        "analytics": {},
-        "cta": {
-            "link": "https://www.swiggy.com/restaurants/bille-di-hatti-kamla-nagar-delhi-18579",
-            "type": "WEBLINK"
-        }
-    },
-    {
-        "info": {
-            "id": "279866",
-            "name": "Ghar ka Khana by EatFit",
-            "cloudinaryImageId": "1d578bb732e03c6f591790eb7d2d88e2",
-            "locality": "Laxmi Narain Street",
-            "areaName": "Paharganj",
-            "costForTwo": "\u20B9250 for two",
-            "cuisines": [
-                "North Indian",
-                "Home Food",
-                "Healthy Food",
-                "Indian",
-                "Punjabi",
-                "South Indian",
-                "Rajasthani",
-                "Maharashtrian",
-                "Snacks",
-                "Desserts",
-                "Beverages"
-            ],
-            "avgRating": 4.2,
-            "parentId": "422576",
-            "avgRatingString": "4.2",
-            "totalRatingsString": "1K+",
-            "sla": {
-                "deliveryTime": 33,
-                "lastMileTravel": 4.4,
-                "serviceability": "SERVICEABLE",
-                "slaString": "30-35 mins",
-                "lastMileTravelString": "4.4 km",
-                "iconType": "ICON_TYPE_EMPTY"
-            },
-            "availability": {
-                "nextCloseTime": "2024-04-17 23:45:00",
-                "opened": true
-            },
-            "badges": {
-                "textExtendedBadges": [
-                    {
-                        "iconId": "guiltfree/GF_Logo_android_3x",
-                        "shortDescription": "options available",
-                        "fontColor": "#7E808C"
-                    }
-                ]
-            },
-            "isOpen": true,
-            "type": "F",
-            "badgesV2": {
-                "entityBadges": {
-                    "imageBased": {},
-                    "textBased": {},
-                    "textExtendedBadges": {
-                        "badgeObject": [
-                            {
-                                "attributes": {
-                                    "description": "",
-                                    "fontColor": "#7E808C",
-                                    "iconId": "guiltfree/GF_Logo_android_3x",
-                                    "shortDescription": "options available"
-                                }
-                            }
-                        ]
-                    }
-                }
-            },
-            "aggregatedDiscountInfoV3": {
-                "header": "50% OFF",
-                "subHeader": "UPTO \u20B9100"
-            },
-            "differentiatedUi": {
-                "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-                "differentiatedUiMediaDetails": {
-                    "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-                    "lottie": {},
-                    "video": {}
-                }
-            },
-            "reviewsSummary": {},
-            "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-            "restaurantOfferPresentationInfo": {}
-        },
-        "analytics": {},
-        "cta": {
-            "link": "https://www.swiggy.com/restaurants/ghar-ka-khana-by-eatfit-laxmi-narain-street-paharganj-delhi-279866",
-            "type": "WEBLINK"
-        }
-    },
-    {
-        "info": {
-            "id": "258198",
-            "name": "Great Indian Khichdi by EatFit",
-            "cloudinaryImageId": "6e44fd7f1e5cd9967edfe47c10247671",
-            "locality": "Chuna Mandi",
-            "areaName": "Paharganj",
-            "costForTwo": "\u20B9200 for two",
-            "cuisines": [
-                "Home Food",
-                "Indian",
-                "North Indian",
-                "Healthy Food",
-                "Snacks",
-                "Desserts",
-                "Rajasthani",
-                "South Indian",
-                "Maharashtrian",
-                "Sweets"
-            ],
-            "avgRating": 4.5,
-            "veg": true,
-            "parentId": "319582",
-            "avgRatingString": "4.5",
-            "totalRatingsString": "1K+",
-            "sla": {
-                "deliveryTime": 32,
-                "lastMileTravel": 4.4,
-                "serviceability": "SERVICEABLE",
-                "slaString": "30-35 mins",
-                "lastMileTravelString": "4.4 km",
-                "iconType": "ICON_TYPE_EMPTY"
-            },
-            "availability": {
-                "nextCloseTime": "2024-04-17 23:45:00",
-                "opened": true
-            },
-            "badges": {
-                "imageBadges": [
-                    {
-                        "imageId": "v1695133679/badges/Pure_Veg111.png",
-                        "description": "pureveg"
-                    }
-                ],
-                "textExtendedBadges": [
-                    {
-                        "iconId": "guiltfree/GF_Logo_android_3x",
-                        "shortDescription": "brand",
-                        "fontColor": "#7E808C"
-                    }
-                ]
-            },
-            "isOpen": true,
-            "type": "F",
-            "badgesV2": {
-                "entityBadges": {
-                    "imageBased": {
-                        "badgeObject": [
-                            {
-                                "attributes": {
-                                    "description": "pureveg",
-                                    "imageId": "v1695133679/badges/Pure_Veg111.png"
-                                }
-                            }
-                        ]
-                    },
-                    "textBased": {},
-                    "textExtendedBadges": {
-                        "badgeObject": [
-                            {
-                                "attributes": {
-                                    "description": "",
-                                    "fontColor": "#7E808C",
-                                    "iconId": "guiltfree/GF_Logo_android_3x",
-                                    "shortDescription": "brand"
-                                }
-                            }
-                        ]
-                    }
-                }
-            },
-            "aggregatedDiscountInfoV3": {
-                "header": "50% OFF",
-                "subHeader": "UPTO \u20B9100"
-            },
-            "differentiatedUi": {
-                "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-                "differentiatedUiMediaDetails": {
-                    "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-                    "lottie": {},
-                    "video": {}
-                }
-            },
-            "reviewsSummary": {},
-            "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-            "restaurantOfferPresentationInfo": {}
-        },
-        "analytics": {},
-        "cta": {
-            "link": "https://www.swiggy.com/restaurants/great-indian-khichdi-by-eatfit-chuna-mandi-paharganj-delhi-258198",
-            "type": "WEBLINK"
-        }
-    },
-    {
-        "info": {
-            "id": "581107",
-            "name": "Nirula's",
-            "cloudinaryImageId": "a66fa8f5befa65947d9e20f29a863ce0",
-            "locality": "Jawahar Nagar",
-            "areaName": "Kamla Nagar",
-            "costForTwo": "\u20B9500 for two",
-            "cuisines": [
-                "Ice Cream",
-                "Pizzas",
-                "Fast Food"
-            ],
-            "avgRating": 4.4,
-            "parentId": "1738",
-            "avgRatingString": "4.4",
-            "totalRatingsString": "100+",
-            "sla": {
-                "deliveryTime": 27,
-                "lastMileTravel": 5,
-                "serviceability": "SERVICEABLE",
-                "slaString": "25-30 mins",
-                "lastMileTravelString": "5.0 km",
-                "iconType": "ICON_TYPE_EMPTY"
-            },
-            "availability": {
-                "nextCloseTime": "2024-04-17 23:00:00",
-                "opened": true
-            },
-            "badges": {
-                "textExtendedBadges": [
-                    {
-                        "iconId": "guiltfree/GF_Logo_android_3x",
-                        "shortDescription": "options available",
-                        "fontColor": "#7E808C"
-                    }
-                ]
-            },
-            "isOpen": true,
-            "type": "F",
-            "badgesV2": {
-                "entityBadges": {
-                    "imageBased": {},
-                    "textBased": {},
-                    "textExtendedBadges": {
-                        "badgeObject": [
-                            {
-                                "attributes": {
-                                    "description": "",
-                                    "fontColor": "#7E808C",
-                                    "iconId": "guiltfree/GF_Logo_android_3x",
-                                    "shortDescription": "options available"
-                                }
-                            }
-                        ]
-                    }
-                }
-            },
-            "aggregatedDiscountInfoV3": {
-                "header": "30% OFF",
-                "subHeader": "UPTO \u20B975"
-            },
-            "differentiatedUi": {
-                "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-                "differentiatedUiMediaDetails": {
-                    "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-                    "lottie": {},
-                    "video": {}
-                }
-            },
-            "reviewsSummary": {},
-            "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-            "restaurantOfferPresentationInfo": {}
-        },
-        "analytics": {},
-        "cta": {
-            "link": "https://www.swiggy.com/restaurants/nirulas-jawahar-nagar-kamla-nagar-delhi-581107",
-            "type": "WEBLINK"
-        }
-    },
-    {
-        "info": {
-            "id": "21301",
-            "name": "Barista Coffee",
-            "cloudinaryImageId": "b64bf721e12e7b3df82c832898999c51",
-            "locality": "Connaught Place",
-            "areaName": "Connaught Place",
-            "costForTwo": "\u20B9350 for two",
-            "cuisines": [
-                "Beverages",
-                "Snacks",
-                "Desserts"
-            ],
-            "avgRating": 4.4,
-            "parentId": "2359",
-            "avgRatingString": "4.4",
-            "totalRatingsString": "1K+",
-            "sla": {
-                "deliveryTime": 29,
-                "lastMileTravel": 4.8,
-                "serviceability": "SERVICEABLE",
-                "slaString": "25-30 mins",
-                "lastMileTravelString": "4.8 km",
-                "iconType": "ICON_TYPE_EMPTY"
-            },
-            "availability": {
-                "nextCloseTime": "2024-04-17 22:00:00",
-                "opened": true
-            },
-            "badges": {
-                "textExtendedBadges": [
-                    {
-                        "iconId": "guiltfree/GF_Logo_android_3x",
-                        "shortDescription": "options available",
-                        "fontColor": "#7E808C"
-                    }
-                ]
-            },
-            "isOpen": true,
-            "type": "F",
-            "badgesV2": {
-                "entityBadges": {
-                    "imageBased": {},
-                    "textBased": {},
-                    "textExtendedBadges": {
-                        "badgeObject": [
-                            {
-                                "attributes": {
-                                    "description": "",
-                                    "fontColor": "#7E808C",
-                                    "iconId": "guiltfree/GF_Logo_android_3x",
-                                    "shortDescription": "options available"
-                                }
-                            }
-                        ]
-                    }
-                }
-            },
-            "aggregatedDiscountInfoV3": {
-                "header": "50% OFF",
-                "subHeader": "UPTO \u20B990"
-            },
-            "differentiatedUi": {
-                "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-                "differentiatedUiMediaDetails": {
-                    "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-                    "lottie": {},
-                    "video": {}
-                }
-            },
-            "reviewsSummary": {},
-            "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-            "restaurantOfferPresentationInfo": {}
-        },
-        "analytics": {},
-        "cta": {
-            "link": "https://www.swiggy.com/restaurants/barista-coffee-connaught-place-delhi-21301",
-            "type": "WEBLINK"
-        }
-    },
-    {
-        "info": {
-            "id": "789690",
-            "name": "FNP Cakes By Ferns N Petals",
-            "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2024/4/16/700acfd8-ccaf-4535-9391-88231a309984_789690.jpg",
-            "locality": "Under Hill Road",
-            "areaName": "Civil Lines",
-            "costForTwo": "\u20B9499 for two",
-            "cuisines": [
-                "Bakery"
-            ],
-            "avgRating": 4.1,
-            "veg": true,
-            "parentId": "339638",
-            "avgRatingString": "4.1",
-            "totalRatingsString": "10+",
-            "sla": {
-                "deliveryTime": 42,
-                "lastMileTravel": 4.1,
-                "serviceability": "SERVICEABLE",
-                "slaString": "40-45 mins",
-                "lastMileTravelString": "4.1 km",
-                "iconType": "ICON_TYPE_EMPTY"
-            },
-            "availability": {
-                "nextCloseTime": "2024-04-17 21:45:00",
-                "opened": true
-            },
-            "badges": {},
-            "isOpen": true,
-            "type": "F",
-            "badgesV2": {
-                "entityBadges": {
-                    "imageBased": {},
-                    "textBased": {},
-                    "textExtendedBadges": {}
-                }
-            },
-            "aggregatedDiscountInfoV3": {
-                "header": "50% OFF",
-                "subHeader": "UPTO \u20B9100"
-            },
-            "differentiatedUi": {
-                "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-                "differentiatedUiMediaDetails": {
-                    "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-                    "lottie": {},
-                    "video": {}
-                }
-            },
-            "reviewsSummary": {},
-            "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-            "isNewlyOnboarded": true,
-            "restaurantOfferPresentationInfo": {}
-        },
-        "analytics": {},
-        "cta": {
-            "link": "https://www.swiggy.com/restaurants/fnp-cakes-by-ferns-n-petals-under-hill-road-civil-lines-delhi-789690",
-            "type": "WEBLINK"
-        }
-    }
-];
-exports.default = resList;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"g6ZGj":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$0b04 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$0b04.prelude(module);
+$parcel$ReactRefreshHelpers$79c2.prelude(module);
 
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -39073,90 +36763,90 @@ const Shimmer = ()=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "shimmer -card"
             }, void 0, false, {
-                fileName: "src/components/Shimmer.js",
+                fileName: "src/components/shimmer.js",
                 lineNumber: 4,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "shimmer -card"
             }, void 0, false, {
-                fileName: "src/components/Shimmer.js",
+                fileName: "src/components/shimmer.js",
                 lineNumber: 5,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "shimmer -card"
             }, void 0, false, {
-                fileName: "src/components/Shimmer.js",
+                fileName: "src/components/shimmer.js",
                 lineNumber: 6,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "shimmer -card"
             }, void 0, false, {
-                fileName: "src/components/Shimmer.js",
+                fileName: "src/components/shimmer.js",
                 lineNumber: 7,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "shimmer -card"
             }, void 0, false, {
-                fileName: "src/components/Shimmer.js",
+                fileName: "src/components/shimmer.js",
                 lineNumber: 8,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "shimmer -card"
             }, void 0, false, {
-                fileName: "src/components/Shimmer.js",
+                fileName: "src/components/shimmer.js",
                 lineNumber: 9,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "shimmer -card"
             }, void 0, false, {
-                fileName: "src/components/Shimmer.js",
+                fileName: "src/components/shimmer.js",
                 lineNumber: 10,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "shimmer -card"
             }, void 0, false, {
-                fileName: "src/components/Shimmer.js",
+                fileName: "src/components/shimmer.js",
                 lineNumber: 11,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "shimmer -card"
             }, void 0, false, {
-                fileName: "src/components/Shimmer.js",
+                fileName: "src/components/shimmer.js",
                 lineNumber: 12,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "shimmer -card"
             }, void 0, false, {
-                fileName: "src/components/Shimmer.js",
+                fileName: "src/components/shimmer.js",
                 lineNumber: 13,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "shimmer -card"
             }, void 0, false, {
-                fileName: "src/components/Shimmer.js",
+                fileName: "src/components/shimmer.js",
                 lineNumber: 14,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "shimmer -card"
             }, void 0, false, {
-                fileName: "src/components/Shimmer.js",
+                fileName: "src/components/shimmer.js",
                 lineNumber: 15,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
-        fileName: "src/components/Shimmer.js",
+        fileName: "src/components/shimmer.js",
         lineNumber: 3,
         columnNumber: 9
     }, undefined);
@@ -39166,12 +36856,140 @@ exports.default = Shimmer;
 var _c;
 $RefreshReg$(_c, "Shimmer");
 
-  $parcel$ReactRefreshHelpers$0b04.postlude(module);
+  $parcel$ReactRefreshHelpers$79c2.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"9R1Eu":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bMboU":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$ffb1 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$ffb1.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "withPromtedLabel", ()=>withPromtedLabel);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _constants = require("../utils/constants");
+var _userContext = require("../utils/UserContext");
+var _userContextDefault = parcelHelpers.interopDefault(_userContext);
+var _s = $RefreshSig$();
+const RestaurantCard = (props)=>{
+    _s();
+    const { resData } = props;
+    (0, _react.useContext)((0, _userContextDefault.default));
+    const { cloudinaryImageId, name, avgRating, cuisines, costForTwo, deliveryTime } = resData;
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        "data-testid": "resCard",
+        className: "ml-10 h- p-4  w-64 hover:shadow-2xl flex flex-col   rounded-lg ",
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                className: "rounded-md overflow-hidden min-h-[180px] h-20 object-cover overlay",
+                alt: "res-logo",
+                src: (0, _constants.CDN_URL) + cloudinaryImageId
+            }, void 0, false, {
+                fileName: "src/components/RestaurantCard.js",
+                lineNumber: 21,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
+                className: "font-bold py-4 text-lg",
+                children: [
+                    " ",
+                    name
+                ]
+            }, void 0, true, {
+                fileName: "src/components/RestaurantCard.js",
+                lineNumber: 26,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
+                className: "text-base truncate ",
+                children: cuisines.join(",")
+            }, void 0, false, {
+                fileName: "src/components/RestaurantCard.js",
+                lineNumber: 27,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
+                children: [
+                    costForTwo,
+                    " "
+                ]
+            }, void 0, true, {
+                fileName: "src/components/RestaurantCard.js",
+                lineNumber: 29,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
+                children: [
+                    deliveryTime,
+                    " minutes"
+                ]
+            }, void 0, true, {
+                fileName: "src/components/RestaurantCard.js",
+                lineNumber: 31,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
+                children: [
+                    avgRating,
+                    " \u2B50"
+                ]
+            }, void 0, true, {
+                fileName: "src/components/RestaurantCard.js",
+                lineNumber: 32,
+                columnNumber: 7
+            }, undefined)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/RestaurantCard.js",
+        lineNumber: 19,
+        columnNumber: 5
+    }, undefined);
+};
+_s(RestaurantCard, "gDsCjeeItUuvgOWf1v4qoK9RF6k=");
+_c = RestaurantCard;
+const withPromtedLabel = (RestaurantCard)=>{
+    return (props)=>{
+        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                    className: "absolute bg-black text-white m-2 p-2 rounded-lg",
+                    children: "Promoted"
+                }, void 0, false, {
+                    fileName: "src/components/RestaurantCard.js",
+                    lineNumber: 45,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(RestaurantCard, {
+                    ...props
+                }, void 0, false, {
+                    fileName: "src/components/RestaurantCard.js",
+                    lineNumber: 48,
+                    columnNumber: 9
+                }, undefined)
+            ]
+        }, void 0, true, {
+            fileName: "src/components/RestaurantCard.js",
+            lineNumber: 44,
+            columnNumber: 7
+        }, undefined);
+    };
+};
+exports.default = RestaurantCard;
+var _c;
+$RefreshReg$(_c, "RestaurantCard");
+
+  $parcel$ReactRefreshHelpers$ffb1.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../utils/constants":"hB8jg","../utils/UserContext":"c5vgB","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"9R1Eu":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$5b98 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -39504,119 +37322,141 @@ try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-var _mockData = require("../utils/mockData");
-var _mockDataDefault = parcelHelpers.interopDefault(_mockData);
-var _shimmer = require("./Shimmer");
+var _shimmer = require("./shimmer");
 var _shimmerDefault = parcelHelpers.interopDefault(_shimmer);
+var _reactRouterDom = require("react-router-dom");
+var _useRestaurantMenu = require("../utils/useRestaurantMenu");
+var _useRestaurantMenuDefault = parcelHelpers.interopDefault(_useRestaurantMenu);
+var _restaurantCategory = require("./RestaurantCategory");
+var _restaurantCategoryDefault = parcelHelpers.interopDefault(_restaurantCategory);
+var _react = require("react");
 var _s = $RefreshSig$();
 const RestaurantMenu = ()=>{
     _s();
-    const [resInfo, setResInfo] = (0, _react.useState)((0, _mockDataDefault.default));
-    (0, _react.useEffect)(()=>{
-        fetchMenu();
-    }, []);
-    const fetchMenu = async ()=>{
-        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&collection=80426&tags=layout_CCS_Dosa&sortBy=&filters=&type=rcv2&offset=0&page_type=null");
-        const json = await data.json();
-        console.log(json);
-        setResInfo(json.info);
-    };
+    const { resId } = (0, _reactRouterDom.useParams)();
+    const dummy = "Dummy Data";
+    const resInfo = (0, _useRestaurantMenuDefault.default)(resId);
+    const [showIndex, setShowIndex] = (0, _react.useState)(null);
     if (resInfo === null) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _shimmerDefault.default), {}, void 0, false, {
         fileName: "src/components/RestaurantMenu.js",
-        lineNumber: 20,
+        lineNumber: 16,
         columnNumber: 32
     }, undefined);
-    const { name, cuisines, avgRating, costForTwo } = resInfo?.cards[0]?.card?.card?.info;
-    //const { Cards}=resData?.info;
+    const { name, cuisines, areaName, avgRating, totalRatingsString } = resInfo?.cards[2]?.card?.card?.info;
+    const { itemCards } = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[4]?.card?.card;
+    //console.log(categories);
+    const categories = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((c)=>c.card?.["card"]?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
+    console.log(categories);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        className: "menu",
+        className: "menu-container mt-5",
         children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
-                children: name
-            }, void 0, false, {
-                fileName: "src/components/RestaurantMenu.js",
-                lineNumber: 36,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
-                children: cuisines.join(", ")
-            }, void 0, false, {
-                fileName: "src/components/RestaurantMenu.js",
-                lineNumber: 37,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "flex justify-between w-6/12 mx-auto border-b-2",
                 children: [
-                    avgRating,
-                    " stars"
-                ]
-            }, void 0, true, {
-                fileName: "src/components/RestaurantMenu.js",
-                lineNumber: 38,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
-                children: costForTwo
-            }, void 0, false, {
-                fileName: "src/components/RestaurantMenu.js",
-                lineNumber: 39,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
-                children: [
-                    resData.info.sla.deliveryTime,
-                    " minutes"
-                ]
-            }, void 0, true, {
-                fileName: "src/components/RestaurantMenu.js",
-                lineNumber: 40,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                children: "Menu"
-            }, void 0, false, {
-                fileName: "src/components/RestaurantMenu.js",
-                lineNumber: 43,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
-                        children: "Biryani"
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "header-contain ",
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: "mb-4",
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                                        className: "font-medium my-1 text-xl",
+                                        children: name
+                                    }, void 0, false, {
+                                        fileName: "src/components/RestaurantMenu.js",
+                                        lineNumber: 41,
+                                        columnNumber: 19
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                        className: "text-gray-500 text-base",
+                                        children: cuisines.join(", ")
+                                    }, void 0, false, {
+                                        fileName: "src/components/RestaurantMenu.js",
+                                        lineNumber: 42,
+                                        columnNumber: 19
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                        className: " text-gray-500 text-sm",
+                                        children: areaName
+                                    }, void 0, false, {
+                                        fileName: "src/components/RestaurantMenu.js",
+                                        lineNumber: 43,
+                                        columnNumber: 19
+                                    }, undefined)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/RestaurantMenu.js",
+                                lineNumber: 40,
+                                columnNumber: 15
+                            }, undefined)
+                        }, void 0, false, {
+                            fileName: "src/components/RestaurantMenu.js",
+                            lineNumber: 39,
+                            columnNumber: 10
+                        }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/RestaurantMenu.js",
-                        lineNumber: 45,
-                        columnNumber: 17
+                        lineNumber: 38,
+                        columnNumber: 7
                     }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
-                        children: "Burgers"
-                    }, void 0, false, {
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h5", {
+                                className: "border-2 rounded-md text-sm p-1 ",
+                                children: [
+                                    "\u2B50",
+                                    avgRating
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/RestaurantMenu.js",
+                                lineNumber: 49,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h5", {
+                                className: "border-2 rounded-md text-sm p-1 ",
+                                children: totalRatingsString
+                            }, void 0, false, {
+                                fileName: "src/components/RestaurantMenu.js",
+                                lineNumber: 50,
+                                columnNumber: 11
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
                         fileName: "src/components/RestaurantMenu.js",
-                        lineNumber: 46,
-                        columnNumber: 17
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
-                        children: "Diet Coke"
-                    }, void 0, false, {
-                        fileName: "src/components/RestaurantMenu.js",
-                        lineNumber: 47,
-                        columnNumber: 17
+                        lineNumber: 48,
+                        columnNumber: 8
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/RestaurantMenu.js",
-                lineNumber: 44,
-                columnNumber: 13
-            }, undefined)
+                lineNumber: 37,
+                columnNumber: 5
+            }, undefined),
+            categories?.map((category, index)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _restaurantCategoryDefault.default), {
+                    data: category?.card?.card,
+                    showItems: index === showIndex ? true : false,
+                    setShowIndex: ()=>setShowIndex(index),
+                    dummy: dummy
+                }, category?.card?.card.title, false, {
+                    fileName: "src/components/RestaurantMenu.js",
+                    lineNumber: 56,
+                    columnNumber: 11
+                }, undefined))
         ]
     }, void 0, true, {
         fileName: "src/components/RestaurantMenu.js",
-        lineNumber: 34,
-        columnNumber: 9
+        lineNumber: 36,
+        columnNumber: 5
     }, undefined);
 };
-_s(RestaurantMenu, "Zw8bAOiF3/F6xrTZTWQw/yLnuwM=");
+_s(RestaurantMenu, "Pr/Iv48nixFe1tjOvF/J0bKpNCQ=", false, function() {
+    return [
+        (0, _reactRouterDom.useParams),
+        (0, _useRestaurantMenuDefault.default)
+    ];
+});
 _c = RestaurantMenu;
 exports.default = RestaurantMenu;
 var _c;
@@ -39627,20 +37467,292 @@ $RefreshReg$(_c, "RestaurantMenu");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../utils/mockData":"iOpE9","./Shimmer":"g6ZGj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"6A5Ux":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","./shimmer":"fWXGy","react-router-dom":"9xmpe","../utils/useRestaurantMenu":"fMOkH","./RestaurantCategory":"K7XHe","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"fMOkH":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$253c = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$253c.prelude(module);
+
+try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+var _react = require("react");
+var _constants = require("../utils/constants");
+var _s = $RefreshSig$();
+const useRestaurantMenu = (resId)=>{
+    _s();
+    const [resInfo, setResInfo] = (0, _react.useState)(null);
+    (0, _react.useEffect)(()=>{
+        fetchData();
+    }, []);
+    const fetchData = async ()=>{
+        const data = await fetch((0, _constants.MENU_API) + resId);
+        const json = await data.json();
+        setResInfo(json.data);
+    };
+    return resInfo;
+};
+_s(useRestaurantMenu, "hwGjLfSdFvMgUl5xpwSM0SJv98A=");
+exports.default = useRestaurantMenu;
+
+  $parcel$ReactRefreshHelpers$253c.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"21dqq","../utils/constants":"hB8jg","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"K7XHe":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$b1f7 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$b1f7.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _itemlist = require("./Itemlist");
+var _itemlistDefault = parcelHelpers.interopDefault(_itemlist);
+const RestaurantCategory = ({ data, showItems, setShowIndex, dummy })=>{
+    const handleClick = ()=>{
+        setShowIndex();
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            className: "w-6/12 mx-auto my-4 bg-gray-50 shadow-lg p-4",
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "flex justify-between cursor-pointer",
+                    onClick: handleClick,
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            className: "font-bold text-lg",
+                            children: [
+                                data.title,
+                                " (",
+                                data.itemCards.length,
+                                ")"
+                            ]
+                        }, void 0, true, {
+                            fileName: "src/components/RestaurantCategory.js",
+                            lineNumber: 16,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            children: "\u2B07\uFE0F"
+                        }, void 0, false, {
+                            fileName: "src/components/RestaurantCategory.js",
+                            lineNumber: 19,
+                            columnNumber: 11
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/RestaurantCategory.js",
+                    lineNumber: 12,
+                    columnNumber: 9
+                }, undefined),
+                showItems && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _itemlistDefault.default), {
+                    items: data.itemCards,
+                    dummy: dummy
+                }, void 0, false, {
+                    fileName: "src/components/RestaurantCategory.js",
+                    lineNumber: 22,
+                    columnNumber: 23
+                }, undefined)
+            ]
+        }, void 0, true, {
+            fileName: "src/components/RestaurantCategory.js",
+            lineNumber: 11,
+            columnNumber: 7
+        }, undefined)
+    }, void 0, false, {
+        fileName: "src/components/RestaurantCategory.js",
+        lineNumber: 9,
+        columnNumber: 5
+    }, undefined);
+};
+_c = RestaurantCategory;
+exports.default = RestaurantCategory;
+var _c;
+$RefreshReg$(_c, "RestaurantCategory");
+
+  $parcel$ReactRefreshHelpers$b1f7.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./Itemlist":"6Wvye","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"6Wvye":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$af7b = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$af7b.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _constants = require("../utils/constants");
+var _reactRedux = require("react-redux");
+var _cartSlice = require("../utils/cartSlice");
+var _s = $RefreshSig$();
+const ItemList = ({ items, dummy })=>{
+    _s();
+    const dispatch = (0, _reactRedux.useDispatch)();
+    const handleAddItem = (item)=>{
+        // Dispatch an action
+        dispatch((0, _cartSlice.addItem)(item));
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: items?.map((item)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "p-2 m-2 border-gray-200 border-b-2 text-left flex justify-between",
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "",
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                            src: "https://corsproxy.org/?https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/" + item?.card.info.imageId,
+                            alt: "",
+                            className: "h-60 rounded-3xl "
+                        }, void 0, false, {
+                            fileName: "src/components/Itemlist.js",
+                            lineNumber: 21,
+                            columnNumber: 13
+                        }, undefined)
+                    }, void 0, false, {
+                        fileName: "src/components/Itemlist.js",
+                        lineNumber: 20,
+                        columnNumber: 11
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "w-9/12",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "py-2",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                        children: item.card.info.name
+                                    }, void 0, false, {
+                                        fileName: "src/components/Itemlist.js",
+                                        lineNumber: 32,
+                                        columnNumber: 15
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                        children: [
+                                            "- \u20B9",
+                                            item.card.info.price ? item.card.info.price / 100 : item.card.info.defaultPrice / 100
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/components/Itemlist.js",
+                                        lineNumber: 33,
+                                        columnNumber: 15
+                                    }, undefined)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/Itemlist.js",
+                                lineNumber: 31,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                className: "text-xs",
+                                children: item.card.info.description
+                            }, void 0, false, {
+                                fileName: "src/components/Itemlist.js",
+                                lineNumber: 40,
+                                columnNumber: 13
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/Itemlist.js",
+                        lineNumber: 30,
+                        columnNumber: 11
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "w-3/12 p-4",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "absolute",
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                                    className: "p-1 mx-16 rounded-lg bg-black text-white shadow-lg",
+                                    onClick: ()=>handleAddItem(item),
+                                    children: "Add +"
+                                }, void 0, false, {
+                                    fileName: "src/components/Itemlist.js",
+                                    lineNumber: 44,
+                                    columnNumber: 13
+                                }, undefined)
+                            }, void 0, false, {
+                                fileName: "src/components/Itemlist.js",
+                                lineNumber: 43,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                                src: (0, _constants.CDN_URL) + item.card.info.imageId,
+                                className: "w-full"
+                            }, void 0, false, {
+                                fileName: "src/components/Itemlist.js",
+                                lineNumber: 51,
+                                columnNumber: 13
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/Itemlist.js",
+                        lineNumber: 42,
+                        columnNumber: 11
+                    }, undefined)
+                ]
+            }, item.card.info.id, true, {
+                fileName: "src/components/Itemlist.js",
+                lineNumber: 16,
+                columnNumber: 9
+            }, undefined))
+    }, void 0, false, {
+        fileName: "src/components/Itemlist.js",
+        lineNumber: 14,
+        columnNumber: 5
+    }, undefined);
+};
+_s(ItemList, "rgTLoBID190wEKCp9+G8W6F7A5M=", false, function() {
+    return [
+        (0, _reactRedux.useDispatch)
+    ];
+});
+_c = ItemList;
+exports.default = ItemList;
+var _c;
+$RefreshReg$(_c, "ItemList");
+
+  $parcel$ReactRefreshHelpers$af7b.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react-redux":"62sf7","../utils/cartSlice":"5RXlr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../utils/constants":"hB8jg"}],"5RXlr":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "addItem", ()=>addItem);
+parcelHelpers.export(exports, "removeItem", ()=>removeItem);
+parcelHelpers.export(exports, "clearCart", ()=>clearCart);
 var _toolkit = require("@reduxjs/toolkit");
-var _cartSlice = require("./cartSlice");
-var _cartSliceDefault = parcelHelpers.interopDefault(_cartSlice);
-const appStore = (0, _toolkit.configureStore)({
-    reducer: {
-        cart: (0, _cartSliceDefault.default)
+const cartSlice = (0, _toolkit.createSlice)({
+    name: "cart",
+    initialState: {
+        items: []
+    },
+    reducers: {
+        addItem: (state, action)=>{
+            state.items.push(action.payload);
+        },
+        removeItem: (state)=>{
+            state.items.pop();
+        },
+        clearCart: (state)=>{
+            state.items.length = 0;
+        }
     }
 });
-exports.default = appStore;
+const { addItem, removeItem, clearCart } = cartSlice.actions;
+exports.default = cartSlice.reducer;
 
-},{"@reduxjs/toolkit":"fuua8","./cartSlice":"5RXlr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fuua8":[function(require,module,exports) {
+},{"@reduxjs/toolkit":"fuua8","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fuua8":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "ReducerType", ()=>ReducerType);
@@ -43592,37 +41704,20 @@ function createThunkMiddleware(extraArgument) {
 var thunk = createThunkMiddleware();
 var withExtraArgument = createThunkMiddleware;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5RXlr":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6A5Ux":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "addItem", ()=>addItem);
-parcelHelpers.export(exports, "removeItem", ()=>removeItem);
-parcelHelpers.export(exports, "clearCart", ()=>clearCart);
 var _toolkit = require("@reduxjs/toolkit");
-const cartSlice = (0, _toolkit.createSlice)({
-    name: "cart",
-    initialState: {
-        items: [
-            "burger",
-            "pizza"
-        ]
-    },
-    reducers: {
-        addItem: (state, action)=>{
-            state.items.push(action.payload);
-        },
-        removeItem: (state)=>{
-            state.items.pop();
-        },
-        clearCart: (state)=>{
-            state.items.length = 0;
-        }
+var _cartSlice = require("./cartSlice");
+var _cartSliceDefault = parcelHelpers.interopDefault(_cartSlice);
+const appStore = (0, _toolkit.configureStore)({
+    reducer: {
+        cart: (0, _cartSliceDefault.default)
     }
 });
-const { addItem, removeItem, clearCart } = cartSlice.actions;
-exports.default = cartSlice.reducer;
+exports.default = appStore;
 
-},{"@reduxjs/toolkit":"fuua8","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"h8J3U":[function(require,module,exports) {
+},{"@reduxjs/toolkit":"fuua8","./cartSlice":"5RXlr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"h8J3U":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$ad24 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -43633,43 +41728,71 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _reactRedux = require("react-redux");
+var _itemlist = require("./Itemlist");
+var _itemlistDefault = parcelHelpers.interopDefault(_itemlist);
 var _cartSlice = require("../utils/cartSlice");
 var _s = $RefreshSig$();
 const Cart = ()=>{
     _s();
+    const cartItems = (0, _reactRedux.useSelector)((store)=>store.cart.items);
+    console.log(cartItems);
     const dispatch = (0, _reactRedux.useDispatch)();
     const handleClearCart = ()=>{
         dispatch((0, _cartSlice.clearCart)());
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        className: "text-center m-4 p-4",
+        className: "text-center m-4p-4",
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
                 className: "text-2xl font-bold",
                 children: "Cart"
             }, void 0, false, {
                 fileName: "src/components/Cart.js",
-                lineNumber: 14,
-                columnNumber: 13
+                lineNumber: 17,
+                columnNumber: 9
             }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                className: "p-2 m-2 bg-black text-white rounded-lg ",
-                onClick: handleClearCart,
-                children: "Clear cart"
-            }, void 0, false, {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "w-6/12 m-auto",
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                        className: " p-2 m-2 bg-black text-white rounded-lg",
+                        onClick: handleClearCart,
+                        children: "Clear Cart"
+                    }, void 0, false, {
+                        fileName: "src/components/Cart.js",
+                        lineNumber: 20,
+                        columnNumber: 9
+                    }, undefined),
+                    cartItems?.length === 0 && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                        children: " Cart is empty. Add Items to the cart!"
+                    }, void 0, false, {
+                        fileName: "src/components/Cart.js",
+                        lineNumber: 27,
+                        columnNumber: 11
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _itemlistDefault.default), {
+                        items: cartItems
+                    }, void 0, false, {
+                        fileName: "src/components/Cart.js",
+                        lineNumber: 29,
+                        columnNumber: 9
+                    }, undefined)
+                ]
+            }, void 0, true, {
                 fileName: "src/components/Cart.js",
-                lineNumber: 15,
-                columnNumber: 13
+                lineNumber: 18,
+                columnNumber: 9
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/Cart.js",
-        lineNumber: 13,
-        columnNumber: 9
+        lineNumber: 16,
+        columnNumber: 8
     }, undefined);
 };
-_s(Cart, "rgTLoBID190wEKCp9+G8W6F7A5M=", false, function() {
+_s(Cart, "ClsVU7OzYQ50hVvtHIih2dVFL+s=", false, function() {
     return [
+        (0, _reactRedux.useSelector),
         (0, _reactRedux.useDispatch)
     ];
 });
@@ -43683,7 +41806,7 @@ $RefreshReg$(_c, "Cart");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-redux":"62sf7","../utils/cartSlice":"5RXlr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"e2h3k":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-redux":"62sf7","../utils/cartSlice":"5RXlr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./Itemlist":"6Wvye"}],"e2h3k":[function(require,module,exports) {
 module.exports = require("29af259fc1f64a1c")(require("4c1094922790cfac").getBundleURL("aXMci") + "Grocery.c52c2ad2.js" + "?" + Date.now()).catch((err)=>{
     delete module.bundle.cache[module.id];
     throw err;
